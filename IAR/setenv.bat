@@ -5,4 +5,4 @@ set PATH=%PATH%;%VCAST_IAR_INSTALL_DIR%\bin;%VCAST_IAR_INSTALL_DIR%\..\common\bi
 
 set VCAST_SUPPORT_FILES=%~dp0SupportFiles
 
-set VCAST_DEMO_SRC_BASE=%~dp0code
+set VCAST_DEMO_SRC_BASE=%~dp0
