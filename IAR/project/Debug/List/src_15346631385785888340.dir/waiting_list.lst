@@ -1,0 +1,253 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.60.2.399/W64 for ARM         24/Sep/2025  10:21:31
+# Copyright 1999-2024 IAR Systems AB.
+#
+#    Cpu mode                     =  thumb
+#    Endian                       =  little
+#    Source file                  =
+#        D:\vector\customers\snph\IAR\code\order_entry\src\waiting_list.c
+#    Command line                 =
+#        -f
+#        D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir\waiting_list.o.rsp
+#        (D:\vector\customers\snph\IAR\code\order_entry\src\waiting_list.c -lC
+#        D:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir
+#        -o D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M7 -e --fpu=VFPv5_sp --libc++ -I
+#        D:\vector\customers\snph\IAR\code\database\inc\ -I
+#        D:\vector\customers\snph\IAR\code\encrypt\inc\ -I
+#        D:\vector\customers\snph\IAR\code\order_entry\inc\ -I
+#        D:\vector\customers\snph\IAR\code\utils\inc\ -On) --dependencies=n
+#        D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir\waiting_list.o.iar_deps
+#    Locale                       =  C
+#    List file                    =
+#        D:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir\waiting_list.lst
+#    Object file                  =
+#        D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir\waiting_list.o
+#    Runtime model:                  
+#      __CPP_Runtime              =  1
+#      __SystemLibrary            =  DLib
+#      __dlib_file_descriptor     =  1
+#      __dlib_full_locale_support =  1
+#      __dlib_version             =  6
+#
+###############################################################################
+
+D:\vector\customers\snph\IAR\code\order_entry\src\waiting_list.c
+      1          /***************************************************************************************
+      2           * Unit: waiting_list.c                                                                *
+      3           *                                                                                     *
+      4           * Purpose: Used as a demostration module for point of sales termainal                 *
+      5           *                                                                                     *
+      6           * Public API:                                                                         *
+      7           *      - void Add_Party_To_Waiting_List(char* Name)                                   *
+      8           *      - char* Get_Next_Party_To_Be_Seated(void)                                      *
+      9           *                                                                                     *
+     10           *                                                                                     *
+     11           * Private API:                                                                        *
+     12           *      - None                                        *                                *
+     13           *                                                                                     *
+     14           *                                                                                     *
+     15           ***************************************************************************************/
+     16          
+     17          /***************************************************************************************
+     18           *                             System Headers                                          *
+     19           ***************************************************************************************/
+     20          
+     21          /***************************************************************************************
+     22           *                             Program Headers                                         *
+     23           ***************************************************************************************/
+     24          
+     25          #include "ctypes.h"
+     26          
+     27          /***************************************************************************************
+     28           *                             External Prototypes                                     *
+     29           ***************************************************************************************/
+     30          
+     31          #include "waiting_list.h"
+     32          
+     33          
+     34          /***************************************************************************************
+     35           *                        Private local variables                                      *
+     36           ***************************************************************************************/
+     37          
+     38          /* Allow 10 Parties to wait */
+
+   \                                 In section .bss, align 4
+     39          static name_type WaitingList[10];
+   \                     WaitingList:
+   \        0x0                      DS8 320
+
+   \                                 In section .bss, align 4
+     40          static uint32_t WaitingListSize = 0;
+   \                     WaitingListSize:
+   \        0x0                      DS8 4
+
+   \                                 In section .bss, align 4
+     41          static uint32_t WaitingListIndex = 0;
+   \                     WaitingListIndex:
+   \        0x0                      DS8 4
+     42          
+     43          /**************************************************************************************
+     44           *  Subprogram: Add_Party_To_Waiting_List                                             *
+     45           *                                                                                    *
+     46           *  Purpose: Add Party To Waiting List                                                *
+     47           *                                                                                    *
+     48           *  Inputs:                                                                           *
+     49           *       - name  char * - name of party to be seated                                  *
+     50           *                                                                                    *
+     51           *  Outputs:                                                                          *
+     52           *       - 0/-1 - Pass/Fail (bill not paid)                                           *
+     53           *                                                                                    * 
+     54           **************************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     55          void Add_Party_To_Waiting_List(int8_t * Name)
+     56          {
+   \                     Add_Party_To_Waiting_List: (+1)
+   \        0x0   0xB430             PUSH     {R4,R5}
+     57            int8_t i = 0;
+   \        0x2   0x2200             MOVS     R2,#+0
+     58            
+     59            // if waiting list is greater that 9...
+     60            if(WaitingListSize > 9)
+   \        0x4   0x....             LDR.N    R3,??DataTable1
+   \        0x6   0x6819             LDR      R1,[R3, #+0]
+   \        0x8   0x290A             CMP      R1,#+10
+   \        0xA   0xD301             BCC.N    ??Add_Party_To_Waiting_List_0
+     61            {
+     62              // clear it out (maybe an error here)
+     63              WaitingListSize = '\0';
+   \        0xC   0x2100             MOVS     R1,#+0
+   \        0xE   0x6019             STR      R1,[R3, #+0]
+     64            }
+     65            
+     66            // copy the name onto the waiting list (should use strcpy)
+     67            while( (Name != NULL) && (*Name != '\0')) 
+   \                     ??Add_Party_To_Waiting_List_0: (+1)
+   \       0x10   0x2800             CMP      R0,#+0
+   \       0x12   0xD00E             BEQ.N    ??Add_Party_To_Waiting_List_1
+   \       0x14   0xF990 0x1000      LDRSB    R1,[R0, #+0]
+   \       0x18   0x2900             CMP      R1,#+0
+   \       0x1A   0xD00A             BEQ.N    ??Add_Party_To_Waiting_List_1
+     68            {
+     69              // Go to the next name
+     70              WaitingList[WaitingListSize][i++] = *Name;
+   \       0x1C   0x....             LDR.N    R1,??DataTable1_1
+   \       0x1E   0x681C             LDR      R4,[R3, #+0]
+   \       0x20   0x0164             LSLS     R4,R4,#+5
+   \       0x22   0x4421             ADD      R1,R1,R4
+   \       0x24   0x0014             MOVS     R4,R2
+   \       0x26   0xB264             SXTB     R4,R4
+   \       0x28   0x7805             LDRB     R5,[R0, #+0]
+   \       0x2A   0x550D             STRB     R5,[R1, R4]
+   \       0x2C   0x1C52             ADDS     R2,R2,#+1
+     71              Name++;
+   \       0x2E   0x1C40             ADDS     R0,R0,#+1
+   \       0x30   0xE7EE             B.N      ??Add_Party_To_Waiting_List_0
+     72            }
+     73            // set the end of the string to '\0'
+     74            WaitingList[WaitingListSize++][i] = '\0';
+   \                     ??Add_Party_To_Waiting_List_1: (+1)
+   \       0x32   0x....             LDR.N    R1,??DataTable1_1
+   \       0x34   0x681C             LDR      R4,[R3, #+0]
+   \       0x36   0x0164             LSLS     R4,R4,#+5
+   \       0x38   0x4421             ADD      R1,R1,R4
+   \       0x3A   0x0014             MOVS     R4,R2
+   \       0x3C   0xB264             SXTB     R4,R4
+   \       0x3E   0x2500             MOVS     R5,#+0
+   \       0x40   0x550D             STRB     R5,[R1, R4]
+   \       0x42   0x6819             LDR      R1,[R3, #+0]
+   \       0x44   0x1C49             ADDS     R1,R1,#+1
+   \       0x46   0x6019             STR      R1,[R3, #+0]
+     75          }
+   \       0x48   0xBC30             POP      {R4,R5}
+   \       0x4A   0x4770             BX       LR
+     76          
+     77          
+     78          /**************************************************************************************
+     79           *  Subprogram: Add_Party_To_Waiting_List                                             *
+     80           *                                                                                    *
+     81           *  Purpose: Add Party To Waiting List                                                *
+     82           *                                                                                    *
+     83           *  Inputs:                                                                           *
+     84           *       - None                                                                       *
+     85           *                                                                                    *
+     86           *  Outputs:                                                                          *
+     87           *       - int8_t * - name from waiting list                                            *
+     88           *                                                                                    * 
+     89           **************************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     90          int8_t * Get_Next_Party_To_Be_Seated(void)
+     91          {
+     92            // if the waiting list is over 9
+     93            if(WaitingListIndex > 9)
+   \                     Get_Next_Party_To_Be_Seated: (+1)
+   \        0x0   0x....             LDR.N    R0,??DataTable1_2
+   \        0x2   0x6801             LDR      R1,[R0, #+0]
+   \        0x4   0x290A             CMP      R1,#+10
+   \        0x6   0xD301             BCC.N    ??Get_Next_Party_To_Be_Seated_0
+     94            {
+     95              // roll back to beginning(maybe an error here)
+     96              WaitingListIndex = 0;
+   \        0x8   0x2100             MOVS     R1,#+0
+   \        0xA   0x6001             STR      R1,[R0, #+0]
+     97            }
+     98          
+     99            // return the name from the list
+    100            return WaitingList[WaitingListIndex++];
+   \                     ??Get_Next_Party_To_Be_Seated_0: (+1)
+   \        0xC   0x6801             LDR      R1,[R0, #+0]
+   \        0xE   0x1C4A             ADDS     R2,R1,#+1
+   \       0x10   0x6002             STR      R2,[R0, #+0]
+   \       0x12   0x....             LDR.N    R0,??DataTable1_1
+   \       0x14   0x0149             LSLS     R1,R1,#+5
+   \       0x16   0x4408             ADD      R0,R0,R1
+   \       0x18   0x4770             BX       LR
+    101          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1:
+   \        0x0   0x....'....        DC32     WaitingListSize
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_1:
+   \        0x0   0x....'....        DC32     WaitingList
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_2:
+   \        0x0   0x....'....        DC32     WaitingListIndex
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       8   Add_Party_To_Waiting_List
+       0   Get_Next_Party_To_Be_Seated
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable1
+       4  ??DataTable1_1
+       4  ??DataTable1_2
+      76  Add_Party_To_Waiting_List
+      26  Get_Next_Party_To_Be_Seated
+     320  WaitingList
+       4  WaitingListIndex
+       4  WaitingListSize
+
+ 
+ 328 bytes in section .bss
+ 114 bytes in section .text
+ 
+ 114 bytes of CODE memory
+ 328 bytes of DATA memory
+
+Errors: none
+Warnings: none

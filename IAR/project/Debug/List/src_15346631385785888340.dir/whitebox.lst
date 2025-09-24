@@ -1,0 +1,260 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.60.2.399/W64 for ARM         24/Sep/2025  10:21:31
+# Copyright 1999-2024 IAR Systems AB.
+#
+#    Cpu mode          =  thumb
+#    Endian            =  little
+#    Source file       =
+#        D:\vector\customers\snph\IAR\code\utils\src\whitebox.c
+#    Command line      =
+#        -f
+#        D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir\whitebox.o.rsp
+#        (D:\vector\customers\snph\IAR\code\utils\src\whitebox.c -lC
+#        D:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir
+#        -o D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M7 -e --fpu=VFPv5_sp --libc++ -I
+#        D:\vector\customers\snph\IAR\code\database\inc\ -I
+#        D:\vector\customers\snph\IAR\code\encrypt\inc\ -I
+#        D:\vector\customers\snph\IAR\code\order_entry\inc\ -I
+#        D:\vector\customers\snph\IAR\code\utils\inc\ -On) --dependencies=n
+#        D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir\whitebox.o.iar_deps
+#    Locale            =  C
+#    List file         =
+#        D:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir\whitebox.lst
+#    Object file       =
+#        D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir\whitebox.o
+#    Runtime model:       
+#      __CPP_Runtime   =  1
+#      __SystemLibrary =  DLib
+#
+###############################################################################
+
+D:\vector\customers\snph\IAR\code\utils\src\whitebox.c
+      1          /***************************************************************************************
+      2           * Unit: whitebox.c                                                                    *
+      3           *                                                                                     *
+      4           * Purpose: Used as a demostration module for whitebox testing                         *
+      5           *          (public and private API) vs blackbox testing (no private API)              *
+      6           *                                                                                     *
+      7           * Public API:                                                                         *
+      8           *      - void Initialize(void)                                                        *
+      9           *                                                                                     *
+     10           * Private API:                                                                        *
+     11           *      - void InitDay(enum DAY Val)                                                   *
+     12           *      - static void InitColor(enum COLOR Val)                                        *
+     13           *                                                                                     *
+     14           *                                                                                     *
+     15           ***************************************************************************************/
+     16          
+     17          
+     18          /****************************************************************************************
+     19           *                             Local Data Structures                                    *
+     20           ****************************************************************************************/
+     21          
+     22          // Define the Pointer Type 
+     23          struct PointerType
+     24          {
+     25            // Index into data array
+     26            int DataIndex;
+     27            
+     28            // Data Value stored
+     29            int DataValue;
+     30          };
+     31          
+     32          /****************************************************************************************
+     33           *                             Local enumerated types                                   *
+     34           ****************************************************************************************/
+     35          
+     36          // Enumeration of colors used
+     37          enum COLOR {RED, GREEN, BLUE};
+     38          
+     39          // Emueration of the valid days
+     40          // Not that Friday, Saturday, Sunday are not valid
+     41          enum DAY   {MONDAY, TUESDAY, WEDNESDAY, THURSDAY};
+     42          
+     43          /****************************************************************************************
+     44           *                             Private Variables                                        *
+     45           ****************************************************************************************/
+     46          
+     47          // Private variable declaration for Current Color and Day
+
+   \                                 In section .bss, align 1
+     48          static enum COLOR CurrentColor;
+                                   ^
+Warning[Pe550]: variable "CurrentColor" was set but never used
+   \                     CurrentColor:
+   \        0x0                      DS8 1
+
+   \                                 In section .bss, align 1
+     49          static enum DAY  CurrentDay;
+                                  ^
+Warning[Pe550]: variable "CurrentDay" was set but never used
+   \                     CurrentDay:
+   \        0x0                      DS8 1
+     50          
+     51          // Private Pointer Structure
+
+   \                                 In section .bss, align 4
+     52          static struct PointerType P;
+                                           ^
+Warning[Pe550]: variable "P" was set but never used
+   \                     P:
+   \        0x0                      DS8 8
+     53          
+     54          /**************************************************************************************
+     55           *  Subprogram: InitDay                                                               *
+     56           *                                                                                    * 
+     57           *  Purpose: Sets the unit private variable CurrentDay                                *
+     58           *                                                                                    * 
+     59           *  Inputs:                                                                           *
+     60           *       - Val - enum DAY - Day input                                                 *
+     61           *                                                                                    * 
+     62           *  Outputs:                                                                          *
+     63           *       - None                                                                       *
+     64           *                                                                                    * 
+     65           **************************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     66          static void InitDay(enum DAY Val)
+     67          {
+     68            // Save the day
+     69            CurrentDay = Val;
+   \                     InitDay: (+1)
+   \        0x0   0x....             LDR.N    R1,??DataTable2
+   \        0x2   0x7008             STRB     R0,[R1, #+0]
+     70          }
+   \        0x4   0x4770             BX       LR
+     71          
+     72          /**************************************************************************************
+     73           *  Subprogram: InitDay                                                               *
+     74           *                                                                                    * 
+     75           *  Purpose: Sets the unit private variable CurrentColor                              *
+     76           *                                                                                    * 
+     77           *  Inputs:                                                                           *
+     78           *       - Val - enum COLOR - Color input                                             *
+     79           *                                                                                    * 
+     80           *  Outputs:                                                                          *
+     81           *       - None                                                                       *
+     82           *                                                                                    * 
+     83           **************************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     84          static void InitColor(enum COLOR Val)
+     85          {
+     86            // Save the color
+     87            CurrentColor = Val;
+   \                     InitColor: (+1)
+   \        0x0   0x....             LDR.N    R1,??DataTable2_1
+   \        0x2   0x7008             STRB     R0,[R1, #+0]
+     88          }
+   \        0x4   0x4770             BX       LR
+     89          
+     90          /**************************************************************************************
+     91           *  Subprogram: doMath                                                                *
+     92           *                                                                                    * 
+     93           *  Purpose: Returns C=A+B                                                            *
+     94           *                                                                                    * 
+     95           *  Inputs:                                                                           *
+     96           *       - int A                                                                      *
+     97           *       - int B                                                                      *
+     98           *                                                                                    * 
+     99           *  Outputs:                                                                          *
+    100           *       - int a + b                                                                  *
+    101           *                                                                                    * 
+    102           **************************************************************************************/
+    103          static int doMath(int a, int b)
+                            ^
+Warning[Pe177]: function "doMath" was declared but never referenced
+    104          {
+    105              return a * b;
+    106          }
+    107          
+    108          /**************************************************************************************
+    109           *  Subprogram: Initialize                                                            *
+    110           *                                                                                    * 
+    111           *  Purpose: Initializes the white box subsystem                                      *
+    112           *                                                                                    * 
+    113           *  Inputs:                                                                           *
+    114           *       - None                                                                       *
+    115           *                                                                                    * 
+    116           *  Outputs:                                                                          *
+    117           *       - None                                                                       *
+    118           *                                                                                    * 
+    119           **************************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    120          void Initialize(void) 
+    121          {
+   \                     Initialize: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    122            // Initialize the day
+    123            InitDay(WEDNESDAY);
+   \        0x2   0x2002             MOVS     R0,#+2
+   \        0x4   0x.... 0x....      BL       InitDay
+    124          
+    125            // Initialize the color
+    126            InitColor(BLUE);
+   \        0x8   0x2002             MOVS     R0,#+2
+   \        0xA   0x.... 0x....      BL       InitColor
+    127          
+    128            // Initialize the private pointer P
+    129            P.DataIndex = 1;
+   \        0xE   0x....             LDR.N    R0,??DataTable2_2
+   \       0x10   0x2101             MOVS     R1,#+1
+   \       0x12   0x6001             STR      R1,[R0, #+0]
+    130            P.DataValue = 12;
+   \       0x14   0x210C             MOVS     R1,#+12
+   \       0x16   0x6041             STR      R1,[R0, #+4]
+    131          }
+   \       0x18   0xBD01             POP      {R0,PC}
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2:
+   \        0x0   0x....'....        DC32     CurrentDay
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_1:
+   \        0x0   0x....'....        DC32     CurrentColor
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable2_2:
+   \        0x0   0x....'....        DC32     P
+    132          
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       0   InitColor
+       0   InitDay
+       8   Initialize
+         8   -> InitColor
+         8   -> InitDay
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable2
+       4  ??DataTable2_1
+       4  ??DataTable2_2
+       1  CurrentColor
+       1  CurrentDay
+       6  InitColor
+       6  InitDay
+      26  Initialize
+       8  P
+
+ 
+ 10 bytes in section .bss
+ 50 bytes in section .text
+ 
+ 50 bytes of CODE memory
+ 10 bytes of DATA memory
+
+Errors: none
+Warnings: 4

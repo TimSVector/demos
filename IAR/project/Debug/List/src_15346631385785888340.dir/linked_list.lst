@@ -1,0 +1,551 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.60.2.399/W64 for ARM         24/Sep/2025  10:21:31
+# Copyright 1999-2024 IAR Systems AB.
+#
+#    Cpu mode                     =  thumb
+#    Endian                       =  little
+#    Source file                  =
+#        D:\vector\customers\snph\IAR\code\utils\src\linked_list.c
+#    Command line                 =
+#        -f
+#        D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir\linked_list.o.rsp
+#        (D:\vector\customers\snph\IAR\code\utils\src\linked_list.c -lC
+#        D:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir
+#        -o D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M7 -e --fpu=VFPv5_sp --libc++ -I
+#        D:\vector\customers\snph\IAR\code\database\inc\ -I
+#        D:\vector\customers\snph\IAR\code\encrypt\inc\ -I
+#        D:\vector\customers\snph\IAR\code\order_entry\inc\ -I
+#        D:\vector\customers\snph\IAR\code\utils\inc\ -On) --dependencies=n
+#        D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir\linked_list.o.iar_deps
+#    Locale                       =  C
+#    List file                    =
+#        D:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir\linked_list.lst
+#    Object file                  =
+#        D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir\linked_list.o
+#    Runtime model:                  
+#      __CPP_Runtime              =  1
+#      __SystemLibrary            =  DLib
+#      __dlib_file_descriptor     =  1
+#      __dlib_full_locale_support =  1
+#      __dlib_version             =  6
+#
+###############################################################################
+
+D:\vector\customers\snph\IAR\code\utils\src\linked_list.c
+      1          /***************************************************************************************
+      2           * Unit: linked_list.c                                                                 *
+      3           *                                                                                     *
+      4           * Purpose: Provides linked list services                                              *
+      5           *                                                                                     *
+      6           * Public API:                                                                         *
+      7           *    - int RemoveDataItem(struct DataItem * Data)                                     *
+      8           *    - struct DataItem * findData (struct DataItem searchData)                        *
+      9           *    - int InsertDataItem(struct DataItem * Data)                                     *
+     10           *    - void initLinkList(void)                                                        *
+     11           *    - void destroyLinkedList(void)                                                   *
+     12           *                                                                                     *
+     13           * Private API:                                                                        *
+     14           *    - struct Node * findDataNode (struct DataItem * Data)                            *
+     15           *    - struct DataItem * getData(int table)                                           *
+     16           *    - void RemoveAllDataItems(void)                                                  *
+     17           *                                                                                     *
+     18           *                                                                                     *
+     19           ***************************************************************************************/
+     20          
+     21          /***************************************************************************************
+     22           *                             System Headers                                          *
+     23           ***************************************************************************************/
+     24          
+     25          
+     26          #include "ctypes.h"
+     27          
+     28          /***************************************************************************************
+     29           *                             Program Headers                                         *
+     30           ***************************************************************************************/
+     31          
+     32          #include "linked_list.h"
+     33          
+     34          /***************************************************************************************
+     35           *                        Private local variables                                      *
+     36           ***************************************************************************************/
+     37          
+     38          struct Node
+     39          {
+     40            struct DataItem Data;
+     41            struct Node *next, *previous; // Pointer to next/previous nodes
+     42          };
+     43          
+
+   \                                 In section .bss, align 4
+     44          static struct Node * linkedList = NULL, *linkedListEnd = NULL;
+   \                     linkedList:
+   \        0x0                      DS8 4
+
+   \                                 In section .bss, align 4
+   \                     linkedListEnd:
+   \        0x0                      DS8 4
+     45          
+     46          
+     47          /***************************************************************************************
+     48           *                           Private functions                                         *
+     49           ***************************************************************************************/
+     50          
+     51          static struct Node * findDataNode (struct DataItem * Data);
+     52          static void RemoveAllDataItems(void);
+     53          
+     54          /**************************************************************************************
+     55           *  Subprogram: RemoveAllDataItems                                                    *
+     56           *                                                                                    * 
+     57           *  Purpose: Removes all the data items in the linked list                            *
+     58           *                                                                                    * 
+     59           *  Inputs:                                                                           *
+     60           *     - None                                                                         *
+     61           *                                                                                    *
+     62           *  Outputs:                                                                          *
+     63           *     - None                                                                         *
+     64           *                                                                                    *                                                                                  * 
+     65           **************************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     66          static void RemoveAllDataItems(void)
+     67          {
+   \                     RemoveAllDataItems: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+     68            // loop over the entire linked list
+     69            while (linkedList != NULL)
+   \                     ??RemoveAllDataItems_0: (+1)
+   \        0x2   0x....             LDR.N    R1,??DataTable4
+   \        0x4   0x6808             LDR      R0,[R1, #+0]
+   \        0x6   0x2800             CMP      R0,#+0
+   \        0x8   0xD003             BEQ.N    ??RemoveAllDataItems_1
+     70            {
+     71              // remove the current data item
+     72              RemoveDataItem(&linkedList->Data);
+   \        0xA   0x6808             LDR      R0,[R1, #+0]
+   \        0xC   0x.... 0x....      BL       RemoveDataItem
+   \       0x10   0xE7F7             B.N      ??RemoveAllDataItems_0
+     73            }
+     74          }
+   \                     ??RemoveAllDataItems_1: (+1)
+   \       0x12   0xBD01             POP      {R0,PC}
+     75          
+     76          /**************************************************************************************
+     77           *  Subprogram: initLinkList                                                          *
+     78           *                                                                                    * 
+     79           *  Purpose: Initializes the linked list data                                         *
+     80           *                                                                                    * 
+     81           *  Inputs:                                                                           *
+     82           *     - None                                                                         *
+     83           *                                                                                    *
+     84           *  Outputs:                                                                          *
+     85           *     - None                                                                         *
+     86           *                                                                                    * 
+     87           **************************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     88          void initLinkList(void)
+     89          {
+     90            // Initializee the top and bottom of linked list to NULL
+     91            linkedList = linkedListEnd = NULL;
+   \                     initLinkList: (+1)
+   \        0x0   0x....             LDR.N    R0,??DataTable4_1
+   \        0x2   0x2100             MOVS     R1,#+0
+   \        0x4   0x6001             STR      R1,[R0, #+0]
+   \        0x6   0x6800             LDR      R0,[R0, #+0]
+   \        0x8   0x....             LDR.N    R1,??DataTable4
+   \        0xA   0x6008             STR      R0,[R1, #+0]
+     92          }
+   \        0xC   0x4770             BX       LR
+     93          
+     94          /**************************************************************************************
+     95           *  Subprogram: destroyLinkedList                                                     *
+     96           *                                                                                    * 
+     97           *  Purpose: Destroys the linked list by removing all the data items                  *
+     98           *                                                                                    * 
+     99           *  Inputs:                                                                           *
+    100           *     - None                                                                         *
+    101           *                                                                                    *
+    102           *  Outputs:                                                                          *
+    103           *     - None                                                                         *
+    104           *                                                                                    *                                                                                    * 
+    105           **************************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    106          void destroyLinkedList(void)
+    107          {
+   \                     destroyLinkedList: (+1)
+   \        0x0   0xB580             PUSH     {R7,LR}
+    108            // Remove all data items
+    109            RemoveAllDataItems();
+   \        0x2   0x.... 0x....      BL       RemoveAllDataItems
+    110          }
+   \        0x6   0xBD01             POP      {R0,PC}
+    111          
+    112          /**************************************************************************************
+    113           *  Subprogram: findDataNode                                                          *
+    114           *                                                                                    * 
+    115           *  Purpose: Finds the data node based off the Data.Table number                      *
+    116           *                                                                                    * 
+    117           *  Inputs:                                                                           *
+    118           *     - Data - struct DataItem *                                                     *
+    119           *                                                                                    * 
+    120           *  Outputs:                                                                          *
+    121           *     - struct Node *                                                                *
+    122           *                                                                                    * 
+    123           **************************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    124          static struct Node * findDataNode (struct DataItem * Data)
+    125          {
+   \                     findDataNode: (+1)
+   \        0x0   0x0001             MOVS     R1,R0
+    126            // set the search node to the beginning of the linked list
+    127            struct Node * searchNode = linkedList;
+   \        0x2   0x....             LDR.N    R0,??DataTable4
+   \        0x4   0x6800             LDR      R0,[R0, #+0]
+    128          
+    129            // loop until the linked list is empty
+    130            while (searchNode != NULL)
+   \                     ??findDataNode_0: (+1)
+   \        0x6   0x2800             CMP      R0,#+0
+   \        0x8   0xD005             BEQ.N    ??findDataNode_1
+    131            {
+    132              // if we found a matching entry
+    133              if (Data->table == searchNode->Data.table)
+   \        0xA   0x680A             LDR      R2,[R1, #+0]
+   \        0xC   0x6803             LDR      R3,[R0, #+0]
+   \        0xE   0x429A             CMP      R2,R3
+   \       0x10   0xD001             BEQ.N    ??findDataNode_2
+    134              {
+    135                // return that entry
+    136                return searchNode;
+    137              }
+    138              else
+    139              {
+    140                // otherwise, traverse the linked list
+    141                searchNode = searchNode->next;
+   \                     ??findDataNode_3: (+1)
+   \       0x12   0x6AC0             LDR      R0,[R0, #+44]
+   \       0x14   0xE7F7             B.N      ??findDataNode_0
+    142              }
+    143            }
+    144          
+    145            // return what should be a NULL node
+    146            return searchNode;
+   \                     ??findDataNode_1: (+1)
+   \                     ??findDataNode_2: (+1)
+   \       0x16   0x4770             BX       LR
+    147          }
+    148          
+    149          /**************************************************************************************
+    150           *  Subprogram: Add_Included_Dessert                                                  *
+    151           *                                                                                    * 
+    152           *  Purpose: Add a free dessert to specific orders based on the                       *
+    153           *       entree, salad, and beverage choice                                           *
+    154           *                                                                                    * 
+    155           *  Inputs:                                                                           *
+    156           *     - Data - struct DataItem*                                                      *
+    157           *                                                                                    * 
+    158           *  Outputs:                                                                          *
+    159           *     - int - SUCCESS/FAILURE                                                        *
+    160           *                                                                                    * 
+    161           **************************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    162          int InsertDataItem(struct DataItem * Data)
+    163          {
+   \                     InsertDataItem: (+1)
+   \        0x0   0xE92D 0x41F0      PUSH     {R4-R8,LR}
+   \        0x4   0x0005             MOVS     R5,R0
+    164            // allocate a new node
+    165            struct Node * nodeData = (struct Node *) malloc(sizeof(struct Node));
+   \        0x6   0x2034             MOVS     R0,#+52
+   \        0x8   0x.... 0x....      BL       malloc
+   \        0xC   0x0004             MOVS     R4,R0
+    166            
+    167            // if we had a memory problem...
+    168            if (nodeData == NULL)
+   \        0xE   0x2C00             CMP      R4,#+0
+   \       0x10   0xD102             BNE.N    ??InsertDataItem_0
+    169            {
+    170              return FAILURE;
+   \       0x12   0xF05F 0x30FF      MOVS     R0,#+4294967295
+   \       0x16   0xE01B             B.N      ??InsertDataItem_1
+    171            }
+    172            
+    173            // copy the data into the allocated structure
+    174            memcpy (&nodeData->Data, Data, sizeof(struct DataItem));
+   \                     ??InsertDataItem_0: (+1)
+   \       0x18   0x262C             MOVS     R6,#+44
+   \       0x1A   0x002F             MOVS     R7,R5
+   \       0x1C   0x46A0             MOV      R8,R4
+   \       0x1E   0x0032             MOVS     R2,R6
+   \       0x20   0x0039             MOVS     R1,R7
+   \       0x22   0x4640             MOV      R0,R8
+   \       0x24   0x.... 0x....      BL       __aeabi_memcpy
+    175          
+    176            // initialize the linked list pointers
+    177            nodeData->next = NULL;
+   \       0x28   0x2000             MOVS     R0,#+0
+   \       0x2A   0x62E0             STR      R0,[R4, #+44]
+    178            nodeData->previous = NULL;
+   \       0x2C   0x2000             MOVS     R0,#+0
+   \       0x2E   0x6320             STR      R0,[R4, #+48]
+    179          
+    180            // if the linked list is empty...
+    181            if (linkedList == NULL)
+   \       0x30   0x....             LDR.N    R1,??DataTable4
+   \       0x32   0x6808             LDR      R0,[R1, #+0]
+   \       0x34   0x2800             CMP      R0,#+0
+   \       0x36   0xD104             BNE.N    ??InsertDataItem_2
+    182            {
+    183              // set the points for both beginning and end to the newly allocated data
+    184              linkedList = linkedListEnd = nodeData;
+   \       0x38   0x....             LDR.N    R0,??DataTable4_1
+   \       0x3A   0x6004             STR      R4,[R0, #+0]
+   \       0x3C   0x6800             LDR      R0,[R0, #+0]
+   \       0x3E   0x6008             STR      R0,[R1, #+0]
+   \       0x40   0xE005             B.N      ??InsertDataItem_3
+    185            }
+    186            else
+    187            {
+    188              // fix up the linked list
+    189              
+    190              // currennt end's next pointer goes to node data
+    191              linkedListEnd->next = nodeData;
+   \                     ??InsertDataItem_2: (+1)
+   \       0x42   0x....             LDR.N    R0,??DataTable4_1
+   \       0x44   0x6801             LDR      R1,[R0, #+0]
+   \       0x46   0x62CC             STR      R4,[R1, #+44]
+    192              
+    193              // set the allocated data's previous pointer to the linked list end
+    194              nodeData->previous = linkedListEnd;
+   \       0x48   0x6801             LDR      R1,[R0, #+0]
+   \       0x4A   0x6321             STR      R1,[R4, #+48]
+    195              
+    196              // set the end pointer to node data
+    197              linkedListEnd = nodeData;
+   \       0x4C   0x6004             STR      R4,[R0, #+0]
+    198            }
+    199            
+    200            // return success
+    201            return SUCCESS;
+   \                     ??InsertDataItem_3: (+1)
+   \       0x4E   0x2000             MOVS     R0,#+0
+   \                     ??InsertDataItem_1: (+1)
+   \       0x50   0xE8BD 0x81F0      POP      {R4-R8,PC}
+    202          }
+    203          
+    204          /**************************************************************************************
+    205           *  Subprogram: RemoveDataItem                                                        *
+    206           *                                                                                    * 
+    207           *  Purpose: Find and remove a data item from the linked list                         * 
+    208           *                                                                                    * 
+    209           *  Inputs:                                                                           *
+    210           *     - Data - struct DataItem*                                                      *
+    211           *                                                                                    * 
+    212           *  Outputs:                                                                          *
+    213           *     - int - SUCCESS/FAILURE                                                        *
+    214           *                                                                                    * 
+    215           **************************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    216          int RemoveDataItem(struct DataItem * Data)
+    217          {
+   \                     RemoveDataItem: (+1)
+   \        0x0   0xB5F8             PUSH     {R3-R7,LR}
+   \        0x2   0x0007             MOVS     R7,R0
+    218            // Find the node
+    219            struct Node * foundNode = findDataNode (Data);
+   \        0x4   0x0038             MOVS     R0,R7
+   \        0x6   0x.... 0x....      BL       findDataNode
+   \        0xA   0x0004             MOVS     R4,R0
+    220          
+    221            // If its not found...
+    222            if (foundNode == NULL)
+   \        0xC   0x2C00             CMP      R4,#+0
+   \        0xE   0xD102             BNE.N    ??RemoveDataItem_0
+    223            {
+    224              // return a failure
+    225              return FAILURE;
+   \       0x10   0xF05F 0x30FF      MOVS     R0,#+4294967295
+   \       0x14   0xE015             B.N      ??RemoveDataItem_1
+    226            }
+    227            else
+    228            {
+    229              // get pointers to previous node and next node
+    230              struct Node * previousNode = foundNode->previous;
+   \                     ??RemoveDataItem_0: (+1)
+   \       0x16   0x6B25             LDR      R5,[R4, #+48]
+    231              struct Node * nextNode = foundNode->next;
+   \       0x18   0x6AE6             LDR      R6,[R4, #+44]
+    232          
+    233              // if this node was at the end...
+    234              if (foundNode->next == NULL)
+   \       0x1A   0x6AE0             LDR      R0,[R4, #+44]
+   \       0x1C   0x2800             CMP      R0,#+0
+   \       0x1E   0xD101             BNE.N    ??RemoveDataItem_2
+    235              {
+    236                // adjust linkedListEnd to be the previous node
+    237                linkedListEnd = previousNode;
+   \       0x20   0x....             LDR.N    R0,??DataTable4_1
+   \       0x22   0x6005             STR      R5,[R0, #+0]
+    238              }
+    239          
+    240              // if this node was at the beginning
+    241              if (foundNode->previous == NULL)
+   \                     ??RemoveDataItem_2: (+1)
+   \       0x24   0x6B20             LDR      R0,[R4, #+48]
+   \       0x26   0x2800             CMP      R0,#+0
+   \       0x28   0xD101             BNE.N    ??RemoveDataItem_3
+    242              {
+    243                // adjust linkedList to be the next node
+    244                linkedList = nextNode;
+   \       0x2A   0x....             LDR.N    R0,??DataTable4
+   \       0x2C   0x6006             STR      R6,[R0, #+0]
+    245              }
+    246          
+    247              // clean up break in the list
+    248              
+    249              // if the previous node wasn't at the beginning
+    250              if (previousNode != NULL)
+   \                     ??RemoveDataItem_3: (+1)
+   \       0x2E   0x2D00             CMP      R5,#+0
+   \       0x30   0xD000             BEQ.N    ??RemoveDataItem_4
+    251              {
+    252                // set the previous node to the next node
+    253                previousNode->next = nextNode;
+   \       0x32   0x62EE             STR      R6,[R5, #+44]
+    254              }
+    255                
+    256              // if the previous node wasn't at the end
+    257              if (nextNode != NULL)
+   \                     ??RemoveDataItem_4: (+1)
+   \       0x34   0x2E00             CMP      R6,#+0
+   \       0x36   0xD000             BEQ.N    ??RemoveDataItem_5
+    258              {
+    259                // set the next node to the next node
+    260                nextNode->previous = previousNode;
+   \       0x38   0x6335             STR      R5,[R6, #+48]
+    261              }
+    262          
+    263              // delete node
+    264              free(foundNode);
+   \                     ??RemoveDataItem_5: (+1)
+   \       0x3A   0x0020             MOVS     R0,R4
+   \       0x3C   0x.... 0x....      BL       free
+    265            }
+    266            // return success
+    267            return SUCCESS;
+   \       0x40   0x2000             MOVS     R0,#+0
+   \                     ??RemoveDataItem_1: (+1)
+   \       0x42   0xBDF2             POP      {R1,R4-R7,PC}
+    268          }
+    269          
+    270          
+    271          
+    272          
+    273          /**************************************************************************************
+    274           *  Subprogram: findData                                                              *
+    275           *                                                                                    * 
+    276           *  Purpose: Find a specific node in the linked list                                  *
+    277           *                                                                                    * 
+    278           *  Inputs:                                                                           *
+    279           *     - searchData struct DataItem                                                   *
+    280           *                                                                                    * 
+    281           *  Outputs:                                                                          *
+    282           *     - struct DataItem * - NULL = not found                                         *
+    283           *                                                                                    * 
+    284           **************************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    285          struct DataItem * findData (struct DataItem searchData)
+    286          {
+   \                     findData: (+1)
+   \        0x0   0xB40F             PUSH     {R0-R3}
+   \        0x2   0xB580             PUSH     {R7,LR}
+    287            // find a node based on input data
+    288            struct Node * foundNode = findDataNode (&searchData);
+   \        0x4   0xA802             ADD      R0,SP,#+8
+   \        0x6   0x.... 0x....      BL       findDataNode
+   \        0xA   0x0001             MOVS     R1,R0
+    289          
+    290            // if node not found
+    291            if (foundNode == NULL)
+   \        0xC   0x2900             CMP      R1,#+0
+   \        0xE   0xD101             BNE.N    ??findData_0
+    292            {
+    293              // return NULL
+    294              return NULL;
+   \       0x10   0x2000             MOVS     R0,#+0
+   \       0x12   0xE000             B.N      ??findData_1
+    295            }
+    296            else
+    297            {
+    298              // else return the data in the node
+    299              return &foundNode->Data;
+   \                     ??findData_0: (+1)
+   \       0x14   0x0008             MOVS     R0,R1
+   \                     ??findData_1: (+1)
+   \       0x16   0xBC02             POP      {R1}
+   \       0x18   0xF85D 0xFB14      LDR      PC,[SP], #+20
+    300            }
+    301          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4:
+   \        0x0   0x....'....        DC32     linkedList
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable4_1:
+   \        0x0   0x....'....        DC32     linkedListEnd
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      24   InsertDataItem
+        24   -> __aeabi_memcpy
+        24   -> malloc
+       8   RemoveAllDataItems
+         8   -> RemoveDataItem
+      24   RemoveDataItem
+        24   -> findDataNode
+        24   -> free
+       8   destroyLinkedList
+         8   -> RemoveAllDataItems
+      24   findData
+        24   -> findDataNode
+       0   findDataNode
+       0   initLinkList
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable4
+       4  ??DataTable4_1
+      84  InsertDataItem
+      20  RemoveAllDataItems
+      68  RemoveDataItem
+       8  destroyLinkedList
+      28  findData
+      24  findDataNode
+      14  initLinkList
+       4  linkedList
+       4  linkedListEnd
+
+ 
+   8 bytes in section .bss
+ 254 bytes in section .text
+ 
+ 254 bytes of CODE memory
+   8 bytes of DATA memory
+
+Errors: none
+Warnings: none

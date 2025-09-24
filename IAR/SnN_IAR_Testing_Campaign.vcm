@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="36">
+  <config>
+    <base-directories>
+      <key>VCAST_SourceRoot</key>
+      <value>D:/vector/customers/snph/IAR</value>
+    </base-directories>
+    <saved-logs>5</saved-logs>
+    <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
+  </config>
+  <project-id>1758656104</project-id>
+  <factor-config-options>0</factor-config-options>
+  <environment name="ENCRYPT_UT" type="UNIT">
+    <language>2</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>SnN_Testing_Campaign/build/1964412592</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="INTEGRATION_TEST" type="UNIT">
+    <language>2</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>SnN_Testing_Campaign/build/1964412592</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="MANAGER_UT" type="UNIT">
+    <language>2</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>SnN_Testing_Campaign/build/1964412592</original-environment-directory>
+    </config>
+  </environment>
+  <compiler>
+    <compiler>
+      <name>IAR_STM32F746GN_Sim_C++</name>
+      <config>
+        <config>
+          <key>WHITEBOX</key>
+          <value>YES</value>
+          <key>COVERAGE_TYPE</key>
+          <value>STATEMENT+MCDC</value>
+          <key>C_EXECUTE_CMD</key>
+          <value>$(VCAST_SUPPORT_FILES)\execute_iar.bat SIM</value>
+          <key>C_COMPILER_TAG</key>
+          <value>IAR_ARM_CORTEX_M4_950+_SIM_CPP</value>
+          <key>C_PREPROCESS_CMD</key>
+          <value>iccarm --cpu=Cortex-M7 -e --c++ --preprocess=nlc . --fpu=VFPv5_sp -On</value>
+          <key>C_COMPILE_CMD</key>
+          <value>iccarm --debug --endian=little -e --c++ --cpu=Cortex-M7 --fpu=VFPv5_sp --dlib_config "$(VCAST_IAR_INSTALL_DIR)\inc\c\DLib_Config_Normal.h" -On</value>
+          <key>C_DEBUG_CMD</key>
+          <value>$(VCAST_SUPPORT_FILES)\debug_iar.bat SIM</value>
+          <key>C_DEBUG_HELP_FILE</key>
+          <value></value>
+          <key>C_LINK_CMD</key>
+          <value>ilinkarm --cpu=Cortex-M7 --fpu=VFPv5_sp</value>
+          <key>C_LINK_OPTIONS</key>
+          <value>--config $(VCAST_IAR_INSTALL_DIR)/config/linker/ST/stm32f746xG.icf --map vcast.map --redirect _Printf=_PrintfFullNoMb --redirect _Scanf=_ScanfFullNoMb --redirect __write=__write_buffered --semihosting --entry __iar_program_start</value>
+        </config>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\encrypt\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\encrypt\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\main</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\src</search-directory>
+      </config>
+    </compiler>
+    <testsuite name="TestSuite">
+      <environment name="ENCRYPT_UT"/>
+      <environment name="INTEGRATION_TEST"/>
+      <environment name="MANAGER_UT"/>
+    </testsuite>
+  </compiler>
+  <compiler>
+    <compiler>
+      <name>IAR_STM32F746GN_StLink_C++</name>
+      <config>
+        <config>
+          <key>WHITEBOX</key>
+          <value>YES</value>
+          <key>COVERAGE_TYPE</key>
+          <value>STATEMENT+MCDC</value>
+          <key>C_EXECUTE_CMD</key>
+          <value>$(VCAST_SUPPORT_FILES)\execute_iar.bat</value>
+          <key>C_COMPILER_TAG</key>
+          <value>IAR_ARM_CORTEX_M4_950+_SIM_CPP</value>
+          <key>C_PREPROCESS_CMD</key>
+          <value>iccarm --cpu=Cortex-M7 -e --c++ --preprocess=nlc . --fpu=VFPv5_sp -On</value>
+          <key>C_COMPILE_CMD</key>
+          <value>iccarm --debug --endian=little -e --c++ --cpu=Cortex-M7 --fpu=VFPv5_sp --dlib_config "$(VCAST_IAR_INSTALL_DIR)\inc\c\DLib_Config_Normal.h" -On</value>
+          <key>C_DEBUG_CMD</key>
+          <value>$(VCAST_SUPPORT_FILES)\debug_iar.bat</value>
+          <key>C_DEBUG_HELP_FILE</key>
+          <value></value>
+          <key>C_LINK_CMD</key>
+          <value>ilinkarm --cpu=Cortex-M7 --fpu=VFPv5_sp</value>
+          <key>C_LINK_OPTIONS</key>
+          <value>--config $(VCAST_IAR_INSTALL_DIR)/config/linker/ST/stm32f746xG.icf --map vcast.map --redirect _Printf=_PrintfFullNoMb --redirect _Scanf=_ScanfFullNoMb --redirect __write=__write_buffered --semihosting --entry __iar_program_start</value>
+        </config>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\encrypt\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\encrypt\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\main</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\src</search-directory>
+      </config>
+    </compiler>
+    <testsuite name="TestSuite">
+      <environment name="ENCRYPT_UT"/>
+      <environment name="INTEGRATION_TEST"/>
+      <environment name="MANAGER_UT"/>
+    </testsuite>
+  </compiler>
+</project>
