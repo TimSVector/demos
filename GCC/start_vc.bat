@@ -1,5 +1,4 @@
- 
- 
+
 call setenv.bat
 
-start /b /d wd %VECTORCAST_DIR%\vcastqt
+start /b %VECTORCAST_DIR%\vcastqt -e GCC_Testing_Campaign

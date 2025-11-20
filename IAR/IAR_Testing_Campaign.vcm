@@ -14,7 +14,7 @@
     <language>2</language>
     <is-monitored>0</is-monitored>
     <config>
-      <original-environment-directory>SnN_Testing_Campaign/build/1964412592</original-environment-directory>
+      <original-environment-directory>IAR_Testing_Campaign/build/1964412592</original-environment-directory>
     </config>
   </environment>
   <environment name="FLOAT_ISSUE" type="UNIT">
@@ -28,14 +28,14 @@
     <language>2</language>
     <is-monitored>0</is-monitored>
     <config>
-      <original-environment-directory>SnN_Testing_Campaign/build/1964412592</original-environment-directory>
+      <original-environment-directory>IAR_Testing_Campaign/build/1964412592</original-environment-directory>
     </config>
   </environment>
   <environment name="MANAGER_UT" type="UNIT">
     <language>2</language>
     <is-monitored>0</is-monitored>
     <config>
-      <original-environment-directory>SnN_Testing_Campaign/build/1964412592</original-environment-directory>
+      <original-environment-directory>IAR_Testing_Campaign/build/1964412592</original-environment-directory>
     </config>
   </environment>
   <compiler>
@@ -102,8 +102,12 @@
           <value>IAR_ARM_CORTEX_M4_950+_SIM_CPP</value>
           <key>C_PREPROCESS_CMD</key>
           <value>iccarm --cpu=Cortex-M7 -e --c++ --preprocess=nlc . --fpu=VFPv5_sp -On</value>
+          <key>C_ALT_PREPROCESS_CMD</key>
+          <value>iccarm --cpu=Cortex-M7 -e --preprocess=nlc . --fpu=VFPv5_sp -On</value>
           <key>C_COMPILE_CMD</key>
           <value>iccarm --debug --endian=little -e --c++ --cpu=Cortex-M7 --fpu=VFPv5_sp --dlib_config "$(VCAST_IAR_INSTALL_DIR)\inc\c\DLib_Config_Normal.h" -On</value>
+          <key>C_ALT_COMPILE_CMD</key>
+          <value>iccarm --debug --endian=little -e --cpu=Cortex-M7 --fpu=VFPv5_sp --dlib_config "$(VCAST_IAR_INSTALL_DIR)\inc\c\DLib_Config_Normal.h" -On</value>
           <key>C_DEBUG_CMD</key>
           <value>$(VCAST_SUPPORT_FILES)\debug_iar.bat</value>
           <key>C_DEBUG_HELP_FILE</key>

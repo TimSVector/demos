@@ -54,5 +54,4 @@
       <environment name="MANAGER_TEST"/>
     </testsuite>
   </compiler>
-  <search-directory type="TESTABLE_SOURCE_DIR">D:\vector\customers\snph\wd</search-directory>
 </project>

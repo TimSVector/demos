@@ -1,4 +1,4 @@
 # Installation
-This repository is a simple IAR demo repository
+This repository is a simple demo repository
 
 
