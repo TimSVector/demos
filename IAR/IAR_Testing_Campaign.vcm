@@ -17,13 +17,6 @@
       <original-environment-directory>IAR_Testing_Campaign/build/1964412592</original-environment-directory>
     </config>
   </environment>
-  <environment name="FLOAT_ISSUE" type="UNIT">
-    <language>2</language>
-    <is-monitored>0</is-monitored>
-    <config>
-      <original-environment-directory>SnN_IAR_Testing_Campaign/build/1546962373</original-environment-directory>
-    </config>
-  </environment>
   <environment name="INTEGRATION_TEST" type="UNIT">
     <language>2</language>
     <is-monitored>0</is-monitored>
