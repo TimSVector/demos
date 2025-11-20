@@ -1,0 +1,27 @@
+--  QuickParse File Version: QP_ALL_DEFINED_ENTITIES  --
+HOME_DIRECTORY d:/vector/customers/snph/demos/IAR/code/database/src
+BEGIN_RECORD database.c
+CHECKSUM  2966684423
+BLACKLIST FALSE
+DEFINED_OBJECTS
+   Get_Record
+   Remove_Record
+   Update_Record
+   abs
+   div
+   labs
+   ldiv
+   llabs
+   lldiv
+   memcpy
+   memmove
+   memset
+CALLED_OBJECTS
+   InsertDataItem
+   RemoveDataItem
+   findData
+STATIC_MEMBERS_DECLARED
+STATIC_MEMBERS_NEEDED
+GLOBAL_OBJECTS_NEEDED
+GLOBAL_OBJECTS_DEFINED
+END_RECORD database.c

@@ -1,0 +1,207 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.60.2.399/W64 for ARM         24/Sep/2025  10:21:31
+# Copyright 1999-2024 IAR Systems AB.
+#
+#    Cpu mode                     =  thumb
+#    Endian                       =  little
+#    Source file                  =
+#        D:\vector\customers\snph\IAR\code\encrypt\src\matrix_multiply.c
+#    Command line                 =
+#        -f
+#        D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir\matrix_multiply.o.rsp
+#        (D:\vector\customers\snph\IAR\code\encrypt\src\matrix_multiply.c -lC
+#        D:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir
+#        -o D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M7 -e --fpu=VFPv5_sp --libc++ -I
+#        D:\vector\customers\snph\IAR\code\database\inc\ -I
+#        D:\vector\customers\snph\IAR\code\encrypt\inc\ -I
+#        D:\vector\customers\snph\IAR\code\order_entry\inc\ -I
+#        D:\vector\customers\snph\IAR\code\utils\inc\ -On) --dependencies=n
+#        D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir\matrix_multiply.o.iar_deps
+#    Locale                       =  C
+#    List file                    =
+#        D:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir\matrix_multiply.lst
+#    Object file                  =
+#        D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir\matrix_multiply.o
+#    Runtime model:                  
+#      __CPP_Runtime              =  1
+#      __SystemLibrary            =  DLib
+#      __dlib_file_descriptor     =  1
+#      __dlib_full_locale_support =  1
+#      __dlib_version             =  6
+#
+###############################################################################
+
+D:\vector\customers\snph\IAR\code\encrypt\src\matrix_multiply.c
+      1          
+      2           /**************************************************************************************
+      3           * Unit: matrix_multiply.c                                                             *
+      4           *                                                                                     *
+      5           * Purpose: This is the matrix multiple                                                *
+      6           *                                                                                     *
+      7           * Public API:                                                                         *
+      8           *      - matrix_multipy                                                               *
+      9           *                                                                                     *
+     10           * Private API:                                                                        *
+     11           *      - None                                                                         *
+     12           *                                                                                     *
+     13           *                                                                                     *
+     14           ***************************************************************************************/
+     15          
+     16           /**************************************************************************************
+     17           *                                User Header Files                                    *
+     18           ***************************************************************************************/
+     19           
+     20          #include "ctypes.h"
+     21          #include "matrix_multiply.h"
+     22          
+     23          /**************************************************************************************
+     24           *  Subprogram: matrix_multipy                                                        *
+     25           *                                                                                    * 
+     26           *  Purpose: To drive the                                                             *
+     27           *                                                                                    * 
+     28           *  Inputs:                                                                           *
+     29           *       - M1 - struct matrix_t * - Input Matrix 1                                    *
+     30           *       - M2 - struct matrix_t * - Input Matrix 2                                    *
+     31           *       - result - struct matrix_t * - Output Matrix 2                               *
+     32           *                                                                                    * 
+     33           *  Outputs:                                                                          *
+     34           *       - return (uint32_t): SUCCESS/FAILURE                                        *
+     35           *                                                                                    * 
+     36           **************************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     37          int32_t matrix_multiply(const struct matrix_t * M1, const struct matrix_t * M2, struct matrix_t * result)
+     38          {  
+   \                     matrix_multiply: (+1)
+   \        0x0   0xB5F0             PUSH     {R4-R7,LR}
+   \        0x2   0x0004             MOVS     R4,R0
+     39            // local variables for counters
+     40            uint32_t c;
+     41            uint32_t d;
+     42            uint32_t k;
+     43            
+     44            // sum of the matrix multiply
+     45            uint32_t sum = 0;
+   \        0x4   0xF05F 0x0C00      MOVS     R12,#+0
+     46             
+     47            uint32_t ret_val = SUCCESS;
+   \        0x8   0x2300             MOVS     R3,#+0
+     48            
+     49            // If M1's columns don't match M2's rows, we can't multiply
+     50            if ( M1->col != M2->row )
+   \        0xA   0x6860             LDR      R0,[R4, #+4]
+   \        0xC   0xF8D1 0xE000      LDR      LR,[R1, #+0]
+   \       0x10   0x4570             CMP      R0,LR
+   \       0x12   0xD003             BEQ.N    ??matrix_multiply_0
+     51            {
+     52              // Raise an error
+     53              ret_val = FAILURE;
+   \       0x14   0xF05F 0x30FF      MOVS     R0,#+4294967295
+   \       0x18   0x0003             MOVS     R3,R0
+   \       0x1A   0xE02D             B.N      ??matrix_multiply_1
+     54            }
+     55            else {
+     56              // Loop over the rows 
+     57              for ( c = 0 ; c <  M1->row ; c++ )
+   \                     ??matrix_multiply_0: (+1)
+   \       0x1C   0x2000             MOVS     R0,#+0
+   \       0x1E   0x0005             MOVS     R5,R0
+   \                     ??matrix_multiply_2: (+1)
+   \       0x20   0x6820             LDR      R0,[R4, #+0]
+   \       0x22   0x4285             CMP      R5,R0
+   \       0x24   0xD224             BCS.N    ??matrix_multiply_3
+     58              {
+     59                  
+     60                // Loop over the colums
+     61                for ( d = 0 ; d < M2->col ; d++ )
+   \       0x26   0x2000             MOVS     R0,#+0
+   \       0x28   0x0006             MOVS     R6,R0
+   \                     ??matrix_multiply_4: (+1)
+   \       0x2A   0x6848             LDR      R0,[R1, #+4]
+   \       0x2C   0x4286             CMP      R6,R0
+   \       0x2E   0xD21D             BCS.N    ??matrix_multiply_5
+     62                {
+     63                  sum = 0;
+   \       0x30   0x2000             MOVS     R0,#+0
+   \       0x32   0x4684             MOV      R12,R0
+     64          
+     65                  // Sum up the totals
+     66                  for ( k = 0 ; k < M2->row ; k++ ) {
+   \       0x34   0x2000             MOVS     R0,#+0
+   \       0x36   0x0007             MOVS     R7,R0
+   \                     ??matrix_multiply_6: (+1)
+   \       0x38   0x6808             LDR      R0,[R1, #+0]
+   \       0x3A   0x4287             CMP      R7,R0
+   \       0x3C   0xD20E             BCS.N    ??matrix_multiply_7
+     67                    sum = sum + (M1->matrix[c][k] * M2->matrix[k][d]);
+   \       0x3E   0x0128             LSLS     R0,R5,#+4
+   \       0x40   0x4420             ADD      R0,R4,R0
+   \       0x42   0xEB00 0x0087      ADD      R0,R0,R7, LSL #+2
+   \       0x46   0xF8D0 0xE008      LDR      LR,[R0, #+8]
+   \       0x4A   0x0138             LSLS     R0,R7,#+4
+   \       0x4C   0x4408             ADD      R0,R1,R0
+   \       0x4E   0xEB00 0x0086      ADD      R0,R0,R6, LSL #+2
+   \       0x52   0x6880             LDR      R0,[R0, #+8]
+   \       0x54   0xFB00 0xCC0E      MLA      R12,R0,LR,R12
+     68                  }
+   \       0x58   0x1C7F             ADDS     R7,R7,#+1
+   \       0x5A   0xE7ED             B.N      ??matrix_multiply_6
+     69           
+     70                  // Store the results
+     71                  result->matrix[c][d] = sum;
+   \                     ??matrix_multiply_7: (+1)
+   \       0x5C   0x0128             LSLS     R0,R5,#+4
+   \       0x5E   0x4410             ADD      R0,R2,R0
+   \       0x60   0xEB00 0x0086      ADD      R0,R0,R6, LSL #+2
+   \       0x64   0xF8C0 0xC008      STR      R12,[R0, #+8]
+     72                }
+   \       0x68   0x1C76             ADDS     R6,R6,#+1
+   \       0x6A   0xE7DE             B.N      ??matrix_multiply_4
+     73              }
+   \                     ??matrix_multiply_5: (+1)
+   \       0x6C   0x1C6D             ADDS     R5,R5,#+1
+   \       0x6E   0xE7D7             B.N      ??matrix_multiply_2
+     74              // Store the row count
+     75              result->row = M1->row;
+   \                     ??matrix_multiply_3: (+1)
+   \       0x70   0x6820             LDR      R0,[R4, #+0]
+   \       0x72   0x6010             STR      R0,[R2, #+0]
+     76          
+     77              // Store the column count
+     78              result->col = M2->col;
+   \       0x74   0x6848             LDR      R0,[R1, #+4]
+   \       0x76   0x6050             STR      R0,[R2, #+4]
+     79            } 
+     80            
+     81            // return the result
+     82            return ret_val;
+   \                     ??matrix_multiply_1: (+1)
+   \       0x78   0x0018             MOVS     R0,R3
+   \       0x7A   0xBDF0             POP      {R4-R7,PC}
+     83          }
+     84          
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      20   matrix_multiply
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+     124  matrix_multiply
+
+ 
+ 124 bytes in section .text
+ 
+ 124 bytes of CODE memory
+
+Errors: none
+Warnings: none

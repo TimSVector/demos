@@ -1,0 +1,17 @@
+D:\vector\tools\iar.9.50\arm\bin\armPROC.dll
+
+ D:\vector\tools\iar.9.50\arm\bin\armSIM2.dll
+
+ D:\vector\customers\snph\IAR\Debug\Exe\PointOfSales_v2.out
+
+ --plugin=D:\vector\tools\iar.9.50\arm\bin\armLibSupportUniversal.dll
+
+ --device_macro=D:\vector\tools\iar.9.50\arm/config/debugger/ST/STM32F7xx.dmac
+
+ --device_macro=D:\vector\tools\iar.9.50\arm/config/debugger/ST/STM32F7xx_OB.dmac
+
+ --device_macro=D:\vector\tools\iar.9.50\arm/config/debugger/ST/STM32F7xx_TRACE.dmac
+
+ 
+
+

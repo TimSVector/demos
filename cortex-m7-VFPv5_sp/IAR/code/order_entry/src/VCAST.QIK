@@ -1,0 +1,51 @@
+--  QuickParse File Version: QP_ALL_DEFINED_ENTITIES  --
+HOME_DIRECTORY D:\vector\customers\snph\demos\IAR\code\order_entry\src
+BEGIN_RECORD manager.c
+CHECKSUM  4150251826
+BLACKLIST FALSE
+DEFINED_OBJECTS
+   Add_Included_Dessert
+   Clear_Table
+   Get_Check_Total
+   Pay_The_Bill
+   Place_Order
+   abs
+   div
+   labs
+   ldiv
+   llabs
+   lldiv
+   memcpy
+   memmove
+   memset
+CALLED_OBJECTS
+   Get_Record
+   Remove_Record
+   Update_Record
+   transmit_Info
+STATIC_MEMBERS_DECLARED
+STATIC_MEMBERS_NEEDED
+GLOBAL_OBJECTS_NEEDED
+GLOBAL_OBJECTS_DEFINED
+END_RECORD manager.c
+BEGIN_RECORD waiting_list.c
+CHECKSUM  1912628006
+BLACKLIST FALSE
+DEFINED_OBJECTS
+   Add_Party_To_Waiting_List
+   Get_Next_Party_To_Be_Seated
+   abs
+   div
+   labs
+   ldiv
+   llabs
+   lldiv
+   memcpy
+   memmove
+   memset
+CALLED_OBJECTS
+STATIC_MEMBERS_DECLARED
+STATIC_MEMBERS_NEEDED
+GLOBAL_OBJECTS_NEEDED
+GLOBAL_OBJECTS_DEFINED
+END_RECORD waiting_list.c

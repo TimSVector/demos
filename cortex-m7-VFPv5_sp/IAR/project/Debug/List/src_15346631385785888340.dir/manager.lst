@@ -1,0 +1,570 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V9.60.2.399/W64 for ARM         24/Sep/2025  10:21:31
+# Copyright 1999-2024 IAR Systems AB.
+#
+#    Cpu mode                     =  thumb
+#    Endian                       =  little
+#    Source file                  =
+#        D:\vector\customers\snph\IAR\code\order_entry\src\manager.c
+#    Command line                 =
+#        -f
+#        D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir\manager.o.rsp
+#        (D:\vector\customers\snph\IAR\code\order_entry\src\manager.c -lC
+#        D:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir
+#        -o D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M7 -e --fpu=VFPv5_sp --libc++ -I
+#        D:\vector\customers\snph\IAR\code\database\inc\ -I
+#        D:\vector\customers\snph\IAR\code\encrypt\inc\ -I
+#        D:\vector\customers\snph\IAR\code\order_entry\inc\ -I
+#        D:\vector\customers\snph\IAR\code\utils\inc\ -On) --dependencies=n
+#        D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir\manager.o.iar_deps
+#    Locale                       =  C
+#    List file                    =
+#        D:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir\manager.lst
+#    Object file                  =
+#        D:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir\manager.o
+#    Runtime model:                  
+#      __CPP_Runtime              =  1
+#      __SystemLibrary            =  DLib
+#      __dlib_file_descriptor     =  1
+#      __dlib_full_locale_support =  1
+#      __dlib_version             =  6
+#
+###############################################################################
+
+D:\vector\customers\snph\IAR\code\order_entry\src\manager.c
+      1          /***************************************************************************************
+      2           * Unit: manager.c                                                                     *
+      3           *                                                                                     *
+      4           * Purpose: Used as a demostration module for point32_t of sales termainal                 *
+      5           *                                                                                     *
+      6           * Public API:                                                                         *
+      7           *      - void Add_Included_Dessert(struct order_type* Order)                          *
+      8           *      - int32_t Place_Order(table_index_type Table,                                      *
+      9           *              seat_index_type Seat,                                                  *
+     10           *              struct order_type Order)                                               *
+     11           *      - int32_t Clear_Table(table_index_type Table)                                      *
+     12           *      - float_t Get_Check_Total(table_index_type Table)                                *
+     13           *      - int32_t Pay_The_Bill(const char * name,                                          *
+     14           *              const char cardNumber[16],                                             *
+     15           *              const char secCode[3],                                                 *
+     16           *              int32_t Table)                                                             *
+     17           *      - void Add_Party_To_Waiting_List(char* Name)                                   *
+     18           *      - char* Get_Next_Party_To_Be_Seated(void)                                      *
+     19           *                                                                                     *
+     20           *                                                                                     *
+     21           * Private API:                                                                        *
+     22           *      - None                                        *                                *
+     23           *                                                                                     *
+     24           *                                                                                     *
+     25           ***************************************************************************************/
+     26          
+     27          /***************************************************************************************
+     28           *                             System Headers                                          *
+     29           ***************************************************************************************/
+     30          
+     31          /***************************************************************************************
+     32           *                             Program Headers                                         *
+     33           ***************************************************************************************/
+     34          
+     35          #include "ctypes.h"
+     36          
+     37          /***************************************************************************************
+     38           *                             External Prototypes                                     *
+     39           ***************************************************************************************/
+     40          
+     41          #include "database.h"
+     42          #include "encrypt.h"
+     43          
+     44          #define TAX_RATE 1.00F
+     45          
+     46          /***************************************************************************************
+     47           *                        Private local variables                                      *
+     48           ***************************************************************************************/
+     49          
+     50          /**************************************************************************************
+     51           *  Subprogram: Add_Included_Dessert                                                  *
+     52           *                                                                                    * 
+     53           *  Purpose: Add a free dessert to specific orders based on the                       *
+     54           *           entree, salad, and beverage choice                                       *
+     55           *                                                                                    * 
+     56           *  Inputs:                                                                           *
+     57           *       - Order - struct order_type*                                                 *
+     58           *                                                                                    * 
+     59           *  Outputs:                                                                          *
+     60           *       - None                                                                       *
+     61           *                                                                                    * 
+     62           **************************************************************************************/
+     63          
+
+   \                                 In section .text, align 2, keep-with-next
+     64          void Add_Included_Dessert(struct order_type* Order)
+     65          {
+     66            // Null pointer check
+     67            if (Order != NULL) {
+   \                     Add_Included_Dessert: (+1)
+   \        0x0   0x2800             CMP      R0,#+0
+   \        0x2   0xD019             BEQ.N    ??Add_Included_Dessert_0
+     68            
+     69              // if special steak order
+     70              if(Order->Entree == STEAK &&
+     71               Order->Salad == CAESAR &&
+     72               Order->Beverage == MIXED_DRINK) 
+   \        0x4   0x7881             LDRB     R1,[R0, #+2]
+   \        0x6   0x2901             CMP      R1,#+1
+   \        0x8   0xD108             BNE.N    ??Add_Included_Dessert_1
+   \        0xA   0x7841             LDRB     R1,[R0, #+1]
+   \        0xC   0x2901             CMP      R1,#+1
+   \        0xE   0xD105             BNE.N    ??Add_Included_Dessert_1
+   \       0x10   0x7901             LDRB     R1,[R0, #+4]
+   \       0x12   0x2903             CMP      R1,#+3
+   \       0x14   0xD102             BNE.N    ??Add_Included_Dessert_1
+     73              {
+     74                Order->Dessert = PIE;
+   \       0x16   0x2102             MOVS     R1,#+2
+   \       0x18   0x70C1             STRB     R1,[R0, #+3]
+   \       0x1A   0xE00D             B.N      ??Add_Included_Dessert_0
+     75              } 
+     76          
+     77              // if special lobster order
+     78              else if(Order->Entree == LOBSTER &&
+     79                      Order->Salad == GREEN &&
+     80                      Order->Beverage == WINE) 
+   \                     ??Add_Included_Dessert_1: (+1)
+   \       0x1C   0x7881             LDRB     R1,[R0, #+2]
+   \       0x1E   0x2903             CMP      R1,#+3
+   \       0x20   0xD108             BNE.N    ??Add_Included_Dessert_2
+   \       0x22   0x7841             LDRB     R1,[R0, #+1]
+   \       0x24   0x2902             CMP      R1,#+2
+   \       0x26   0xD105             BNE.N    ??Add_Included_Dessert_2
+   \       0x28   0x7901             LDRB     R1,[R0, #+4]
+   \       0x2A   0x2901             CMP      R1,#+1
+   \       0x2C   0xD102             BNE.N    ??Add_Included_Dessert_2
+     81              {  
+     82                Order->Dessert = CAKE;  
+   \       0x2E   0x2101             MOVS     R1,#+1
+   \       0x30   0x70C1             STRB     R1,[R0, #+3]
+   \       0x32   0xE001             B.N      ??Add_Included_Dessert_0
+     83              }
+     84              else {
+     85                Order->Dessert = FRUIT;  
+   \                     ??Add_Included_Dessert_2: (+1)
+   \       0x34   0x2103             MOVS     R1,#+3
+   \       0x36   0x70C1             STRB     R1,[R0, #+3]
+     86              }
+     87            }      
+     88          }
+   \                     ??Add_Included_Dessert_0: (+1)
+   \       0x38   0x4770             BX       LR
+     89          
+     90          /**************************************************************************************
+     91           *  Subprogram: Place_Order                                                           *
+     92           *                                                                                    *
+     93           *  Purpose: Updates the flags and check totals of the table/seat in the database     *
+     94           *                                                                                    *
+     95           *  Inputs:                                                                           *
+     96           *       - Table - table_index_type - table number                                    *
+     97           *       - Seat - seat_index_type - Seat number                                       *
+     98           *       - Order - struct order_type - Order                                          *
+     99           *                                                                                    *
+    100           *  Outputs:                                                                          *
+    101           *       - 0 - Pass                                                                   *
+    102           *                                                                                    * 
+    103           **************************************************************************************/
+    104          
+
+   \                                 In section .text, align 2, keep-with-next
+    105          int32_t Place_Order(table_index_type Table,
+    106                          seat_index_type Seat,
+    107                          struct order_type Order)
+    108          {
+   \                     Place_Order: (+1)
+   \        0x0   0xB53C             PUSH     {R2-R5,LR}
+   \        0x2   0xB09B             SUB      SP,SP,#+108
+   \        0x4   0x0005             MOVS     R5,R0
+   \        0x6   0x000C             MOVS     R4,R1
+    109            // Local Table Data
+    110            struct table_data_type Table_Data = Get_Record(Table);
+   \        0x8   0x0029             MOVS     R1,R5
+   \        0xA   0xB289             UXTH     R1,R1
+   \        0xC   0xA811             ADD      R0,SP,#+68
+   \        0xE   0x.... 0x....      BL       Get_Record
+   \       0x12   0xA807             ADD      R0,SP,#+28
+   \       0x14   0xA911             ADD      R1,SP,#+68
+   \       0x16   0x2228             MOVS     R2,#+40
+   \       0x18   0x.... 0x....      BL       __aeabi_memcpy4
+    111          
+    112            // Set the Table Data Flags
+    113            Table_Data.Is_Occupied = v_true;
+   \       0x1C   0x2001             MOVS     R0,#+1
+   \       0x1E   0xF88D 0x001C      STRB     R0,[SP, #+28]
+    114            Table_Data.Number_In_Party = Table_Data.Number_In_Party + 1;
+   \       0x22   0xF8BD 0x001E      LDRH     R0,[SP, #+30]
+   \       0x26   0x1C40             ADDS     R0,R0,#+1
+   \       0x28   0xF8AD 0x001E      STRH     R0,[SP, #+30]
+    115            Table_Data.Is_Bill_Paid = v_false;
+   \       0x2C   0x2000             MOVS     R0,#+0
+   \       0x2E   0xF88D 0x001D      STRB     R0,[SP, #+29]
+    116          
+    117            // Add the order to the data structure
+    118            Table_Data.Order[Seat] = Order;
+   \       0x32   0xA907             ADD      R1,SP,#+28
+   \       0x34   0x0022             MOVS     R2,R4
+   \       0x36   0xB292             UXTH     R2,R2
+   \       0x38   0x2005             MOVS     R0,#+5
+   \       0x3A   0x4342             MULS     R2,R0,R2
+   \       0x3C   0xEB01 0x0002      ADD      R0,R1,R2
+   \       0x40   0x300F             ADDS     R0,R0,#+15
+   \       0x42   0xA91B             ADD      R1,SP,#+108
+   \       0x44   0x2205             MOVS     R2,#+5
+   \       0x46   0x.... 0x....      BL       __aeabi_memcpy
+    119            
+    120            // Add a free dessert in some cases
+    121            Add_Included_Dessert(&Table_Data.Order[Seat]);
+   \       0x4A   0xA907             ADD      R1,SP,#+28
+   \       0x4C   0x0022             MOVS     R2,R4
+   \       0x4E   0xB292             UXTH     R2,R2
+   \       0x50   0x2005             MOVS     R0,#+5
+   \       0x52   0x4342             MULS     R2,R0,R2
+   \       0x54   0xEB01 0x0002      ADD      R0,R1,R2
+   \       0x58   0x300F             ADDS     R0,R0,#+15
+   \       0x5A   0x.... 0x....      BL       Add_Included_Dessert
+    122           
+    123            // Update the check total based on Entree Type
+    124            switch(Order.Entree)
+   \       0x5E   0xF89D 0x006E      LDRB     R0,[SP, #+110]
+   \       0x62   0x2800             CMP      R0,#+0
+   \       0x64   0xD006             BEQ.N    ??Place_Order_0
+   \       0x66   0x2802             CMP      R0,#+2
+   \       0x68   0xD00E             BEQ.N    ??Place_Order_1
+   \       0x6A   0xD304             BCC.N    ??Place_Order_2
+   \       0x6C   0x2804             CMP      R0,#+4
+   \       0x6E   0xD01D             BEQ.N    ??Place_Order_3
+   \       0x70   0xD313             BCC.N    ??Place_Order_4
+   \       0x72   0xE024             B.N      ??Place_Order_5
+    125            {
+    126              case NO_ENTREE : 
+    127                break;
+   \                     ??Place_Order_0: (+1)
+   \       0x74   0xE023             B.N      ??Place_Order_6
+    128              case STEAK :
+    129                Table_Data.Check_Total = Table_Data.Check_Total + (float_t) COST_OF_STEAK;
+   \                     ??Place_Order_2: (+1)
+   \       0x76   0xED9D 0x0A10      VLDR     S0,[SP, #+64]
+   \       0x7A   0xEEF2 0x0A0C      VMOV.F32 S1,#14.0
+   \       0x7E   0xEE30 0x0A20      VADD.F32 S0,S0,S1
+   \       0x82   0xED8D 0x0A10      VSTR     S0,[SP, #+64]
+    130                break;
+   \       0x86   0xE01A             B.N      ??Place_Order_6
+    131              case CHICKEN :
+    132                Table_Data.Check_Total = Table_Data.Check_Total + (float_t) COST_OF_CHICKEN;
+   \                     ??Place_Order_1: (+1)
+   \       0x88   0xED9D 0x0A10      VLDR     S0,[SP, #+64]
+   \       0x8C   0xEEF2 0x0A04      VMOV.F32 S1,#10.0
+   \       0x90   0xEE30 0x0A20      VADD.F32 S0,S0,S1
+   \       0x94   0xED8D 0x0A10      VSTR     S0,[SP, #+64]
+    133                break;
+   \       0x98   0xE011             B.N      ??Place_Order_6
+    134              case LOBSTER :
+    135                Table_Data.Check_Total = Table_Data.Check_Total + (float_t) COST_OF_LOBSTER;
+   \                     ??Place_Order_4: (+1)
+   \       0x9A   0xED9D 0x0A10      VLDR     S0,[SP, #+64]
+   \       0x9E   0xEEF3 0x0A02      VMOV.F32 S1,#18.0
+   \       0xA2   0xEE30 0x0A20      VADD.F32 S0,S0,S1
+   \       0xA6   0xED8D 0x0A10      VSTR     S0,[SP, #+64]
+    136                break;
+   \       0xAA   0xE008             B.N      ??Place_Order_6
+    137              case PASTA :
+    138                Table_Data.Check_Total = Table_Data.Check_Total + (float_t) COST_OF_PASTA;
+   \                     ??Place_Order_3: (+1)
+   \       0xAC   0xED9D 0x0A10      VLDR     S0,[SP, #+64]
+   \       0xB0   0xEEF2 0x0A08      VMOV.F32 S1,#12.0
+   \       0xB4   0xEE30 0x0A20      VADD.F32 S0,S0,S1
+   \       0xB8   0xED8D 0x0A10      VSTR     S0,[SP, #+64]
+    139                break;
+   \       0xBC   0xE7FF             B.N      ??Place_Order_6
+    140              default:
+    141                break;
+    142            }
+    143          
+    144            // add sales tax
+    145            Table_Data.Check_Total *= TAX_RATE;
+   \                     ??Place_Order_5: (+1)
+   \                     ??Place_Order_6: (+1)
+   \       0xBE   0x9810             LDR      R0,[SP, #+64]
+   \       0xC0   0x9010             STR      R0,[SP, #+64]
+    146          
+    147            // Updated the database with the new information
+    148            Update_Record(Table, Table_Data);
+   \       0xC2   0xA907             ADD      R1,SP,#+28
+   \       0xC4   0xB083             SUB      SP,SP,#+12
+   \       0xC6   0x4668             MOV      R0,SP
+   \       0xC8   0x2228             MOVS     R2,#+40
+   \       0xCA   0x.... 0x....      BL       __aeabi_memcpy4
+   \       0xCE   0xBC0E             POP      {R1-R3}
+   \       0xD0   0x0028             MOVS     R0,R5
+   \       0xD2   0xB280             UXTH     R0,R0
+   \       0xD4   0x.... 0x....      BL       Update_Record
+    149            
+    150            return 0;
+   \       0xD8   0x2000             MOVS     R0,#+0
+   \       0xDA   0xB01D             ADD      SP,SP,#+116
+   \       0xDC   0xBD30             POP      {R4,R5,PC}
+    151          }
+    152          
+    153          /**************************************************************************************
+    154           *  Subprogram: Clear_Table                                                           *
+    155           *                                                                                    *
+    156           *  Purpose: Clears the entry for the table/seat combination                          *
+    157           *                                                                                    *
+    158           *  Inputs:                                                                           *
+    159           *       - Table - table_index_type - table number                                    *
+    160           *                                                                                    *
+    161           *  Outputs:                                                                          *
+    162           *       - 0/-1 - Pass/Fail (bill not paid)                                           *
+    163           *                                                                                    * 
+    164           **************************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    165          int32_t Clear_Table(table_index_type Table)
+    166          {
+   \                     Clear_Table: (+1)
+   \        0x0   0xB538             PUSH     {R3-R5,LR}
+   \        0x2   0xB08A             SUB      SP,SP,#+40
+   \        0x4   0x0004             MOVS     R4,R0
+    167            int32_t ret_val = SUCCESS;
+   \        0x6   0x2500             MOVS     R5,#+0
+    168            
+    169            // Local Table Data
+    170            const struct table_data_type Table_Data = Get_Record(Table);
+   \        0x8   0x0021             MOVS     R1,R4
+   \        0xA   0xB289             UXTH     R1,R1
+   \        0xC   0x4668             MOV      R0,SP
+   \        0xE   0x.... 0x....      BL       Get_Record
+    171          
+    172            // can't clear the table is the bill isn't paid
+    173            if (Table_Data.Is_Bill_Paid == v_true)
+   \       0x12   0xF89D 0x0001      LDRB     R0,[SP, #+1]
+   \       0x16   0x2801             CMP      R0,#+1
+   \       0x18   0xD104             BNE.N    ??Clear_Table_0
+    174            {
+    175              // Remove the record from the database
+    176              Remove_Record(Table);
+   \       0x1A   0x0020             MOVS     R0,R4
+   \       0x1C   0xB280             UXTH     R0,R0
+   \       0x1E   0x.... 0x....      BL       Remove_Record
+   \       0x22   0xE002             B.N      ??Clear_Table_1
+    177            }
+    178            else
+    179            {
+    180              ret_val = FAILURE;
+   \                     ??Clear_Table_0: (+1)
+   \       0x24   0xF05F 0x30FF      MOVS     R0,#+4294967295
+   \       0x28   0x0005             MOVS     R5,R0
+    181            }
+    182          
+    183            // return pass
+    184            return ret_val;
+   \                     ??Clear_Table_1: (+1)
+   \       0x2A   0x0028             MOVS     R0,R5
+   \       0x2C   0xB00B             ADD      SP,SP,#+44
+   \       0x2E   0xBD30             POP      {R4,R5,PC}
+    185          }
+    186          
+    187          /**************************************************************************************
+    188           *  Subprogram: Get_Check_Total                                                       *
+    189           *                                                                                    *
+    190           *  Purpose: Returns the check total for the table/seat combination                   *
+    191           *                                                                                    *
+    192           *  Inputs:                                                                           *
+    193           *       - Table - table_index_type - table number                                    *
+    194           *                                                                                    *
+    195           *  Outputs:                                                                          *
+    196           *       - Check Total - float_t                                                        *
+    197           *                                                                                    * 
+    198           **************************************************************************************/
+
+   \                                 In section .text, align 4, keep-with-next
+    199          float_t Get_Check_Total(table_index_type Table)
+    200          {
+   \                     Get_Check_Total: (+1)
+   \        0x0   0xB510             PUSH     {R4,LR}
+   \        0x2   0xED2D 0x8B02      VPUSH    {D8}
+   \        0x6   0xB08A             SUB      SP,SP,#+40
+   \        0x8   0x0004             MOVS     R4,R0
+    201            float_t largePartyAutoTip = 0.0F;
+   \        0xA   0xED9F 0x....      VLDR.W   S16,??DataTable1
+    202          
+    203            struct table_data_type Table_Data;
+    204            Table_Data = Get_Record(Table);
+   \        0xE   0x0021             MOVS     R1,R4
+   \       0x10   0xB289             UXTH     R1,R1
+   \       0x12   0x4668             MOV      R0,SP
+   \       0x14   0x.... 0x....      BL       Get_Record
+    205          
+    206            // Parties over 8 get an automatic large party tip added
+    207            if (Table_Data.Number_In_Party >= 8)
+   \       0x18   0xF8BD 0x0002      LDRH     R0,[SP, #+2]
+   \       0x1C   0x2808             CMP      R0,#+8
+   \       0x1E   0xDB07             BLT.N    ??Get_Check_Total_0
+    208            {
+    209              largePartyAutoTip = Table_Data.Check_Total * 0.18F;
+   \       0x20   0xED9D 0x0A09      VLDR     S0,[SP, #+36]
+   \       0x24   0xEDDF 0x....      VLDR.W   S1,??DataTable1_1
+   \       0x28   0xEE20 0x0A20      VMUL.F32 S0,S0,S1
+   \       0x2C   0xEEB0 0x8A40      VMOV.F32 S16,S0
+    210            }
+    211            
+    212            Table_Data.Check_Total *= TAX_RATE;
+   \                     ??Get_Check_Total_0: (+1)
+   \       0x30   0x9809             LDR      R0,[SP, #+36]
+   \       0x32   0x9009             STR      R0,[SP, #+36]
+    213            Table_Data.Check_Total += largePartyAutoTip;
+   \       0x34   0xED9D 0x0A09      VLDR     S0,[SP, #+36]
+   \       0x38   0xEE30 0x0A08      VADD.F32 S0,S0,S16
+   \       0x3C   0xED8D 0x0A09      VSTR     S0,[SP, #+36]
+    214            
+    215            return (Table_Data.Check_Total);
+   \       0x40   0xED9D 0x0A09      VLDR     S0,[SP, #+36]
+   \       0x44   0xB00A             ADD      SP,SP,#+40
+   \       0x46   0xECBD 0x8B02      VPOP     {D8}
+   \       0x4A   0xBD10             POP      {R4,PC}
+    216          }
+    217          
+    218          /**************************************************************************************
+    219           *  Subprogram: Pay_The_Bill                                                          *
+    220           *                                                                                    *
+    221           *  Purpose: Pays the bill (CC only) for the Table                                    *
+    222           *                                                                                    *
+    223           *  Inputs:                                                                           *
+    224           *       - name - const char * - name on the CC                                       *
+    225           *       - cardNumber - const char[16] - number on the CC                             *
+    226           *       - secCode - const char[3] - security code on the CC                          *
+    227           *       - Table - table_index_type - table number                                    *
+    228           *                                                                                    *
+    229           *  Outputs:                                                                          *
+    230           *       - 0/-1 - Pass/Fail (bill not paid)                                           *
+    231           *                                                                                    * 
+    232           **************************************************************************************/
+    233          
+
+   \                                 In section .text, align 2, keep-with-next
+    234          int32_t Pay_The_Bill(const int8_t * name, const int8_t cardNumber[16], const int8_t secCode[3], int32_t Table)
+    235          {
+   \                     Pay_The_Bill: (+1)
+   \        0x0   0xE92D 0x41F8      PUSH     {R3-R8,LR}
+   \        0x4   0xB091             SUB      SP,SP,#+68
+   \        0x6   0x4680             MOV      R8,R0
+   \        0x8   0x000F             MOVS     R7,R1
+   \        0xA   0x0016             MOVS     R6,R2
+   \        0xC   0x001D             MOVS     R5,R3
+    236            int32_t ret_value = FAILURE;
+   \        0xE   0xF05F 0x34FF      MOVS     R4,#+4294967295
+    237            
+    238            // local table dat
+    239            struct table_data_type Table_Data = Get_Record(Table);
+   \       0x12   0x0029             MOVS     R1,R5
+   \       0x14   0xA807             ADD      R0,SP,#+28
+   \       0x16   0x.... 0x....      BL       Get_Record
+    240          
+    241            // make call to transmit the CC info
+    242            if (transmit_Info(name,cardNumber,secCode,Table_Data.Check_Total) == SUCCESS)
+   \       0x1A   0xED9D 0x0A10      VLDR     S0,[SP, #+64]
+   \       0x1E   0x0032             MOVS     R2,R6
+   \       0x20   0x0039             MOVS     R1,R7
+   \       0x22   0x4640             MOV      R0,R8
+   \       0x24   0x.... 0x....      BL       transmit_Info
+   \       0x28   0x2800             CMP      R0,#+0
+   \       0x2A   0xD110             BNE.N    ??Pay_The_Bill_0
+    243            {
+    244               
+    245              // if trasmission was good - set the bill to paid 
+    246              Table_Data.Is_Bill_Paid = v_true;
+   \       0x2C   0x2001             MOVS     R0,#+1
+   \       0x2E   0xF88D 0x001D      STRB     R0,[SP, #+29]
+    247              
+    248              // Reset check total
+    249              Table_Data.Check_Total = 0.0F;
+   \       0x32   0x2000             MOVS     R0,#+0
+   \       0x34   0x9010             STR      R0,[SP, #+64]
+    250                
+    251              // Push the cleared record back into database
+    252              Update_Record(Table, Table_Data);
+   \       0x36   0xA907             ADD      R1,SP,#+28
+   \       0x38   0xB083             SUB      SP,SP,#+12
+   \       0x3A   0x4668             MOV      R0,SP
+   \       0x3C   0x2228             MOVS     R2,#+40
+   \       0x3E   0x.... 0x....      BL       __aeabi_memcpy4
+   \       0x42   0xBC0E             POP      {R1-R3}
+   \       0x44   0x0028             MOVS     R0,R5
+   \       0x46   0x.... 0x....      BL       Update_Record
+    253          
+    254              // return SUCCESS
+    255              ret_value = SUCCESS;
+   \       0x4A   0x2000             MOVS     R0,#+0
+   \       0x4C   0x0004             MOVS     R4,R0
+    256            }
+    257          
+    258            // return FAILURE
+    259            return ret_value;
+   \                     ??Pay_The_Bill_0: (+1)
+   \       0x4E   0x0020             MOVS     R0,R4
+   \       0x50   0xB012             ADD      SP,SP,#+72
+   \       0x52   0xE8BD 0x81F0      POP      {R4-R8,PC}
+    260          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1:
+   \        0x0   0x0000'0000        DC32     0x0
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_1:
+   \        0x0   0x3E38'51EC        DC32     0x3e3851ec
+    261          
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       0   Add_Included_Dessert
+      56   Clear_Table
+        56   -> Get_Record
+        56   -> Remove_Record
+      56   Get_Check_Total
+        56   -> Get_Record
+     108   Pay_The_Bill
+        96   -> Get_Record
+        96   -> Update_Record
+       108   -> __aeabi_memcpy4
+        96   -> transmit_Info
+     140   Place_Order
+       128   -> Add_Included_Dessert
+       128   -> Get_Record
+       128   -> Update_Record
+       128   -> __aeabi_memcpy
+       128   -> __aeabi_memcpy4
+       140   -> __aeabi_memcpy4
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable1
+       4  ??DataTable1_1
+      58  Add_Included_Dessert
+      48  Clear_Table
+      76  Get_Check_Total
+      86  Pay_The_Bill
+     222  Place_Order
+
+ 
+ 498 bytes in section .text
+ 
+ 498 bytes of CODE memory
+
+Errors: none
+Warnings: none

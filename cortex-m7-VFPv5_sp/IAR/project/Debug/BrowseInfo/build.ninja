@@ -1,0 +1,109 @@
+##IAR Ninja build file
+
+
+#Rules
+rule COMPILER_XCL
+  command = D$:\vector\tools\iar.9.50\common\bin\XclFileGenerator.exe $xclcommand -f "$rspfile_name"
+  description = IAR_NEW_TOOL+++COMPILER_XCL+++$out
+  rspfile = $rspfile_name
+  rspfile_content = $flags
+
+rule INDEXER
+  command = D$:\vector\tools\iar.9.50\common\bin\SourceIndexer.exe $flags
+  depfile = $out.dep
+  deps = gcc
+  description = IAR_NEW_TOOL+++INDEXER+++$out
+
+rule MAKEBROWSE
+  command = D$:\vector\tools\iar.9.50\common\bin\makeBrowseData.exe $flags
+  description = IAR_NEW_TOOL+++MAKEBROWSE+++$out
+
+rule PDBLINK
+  command = D$:\vector\tools\iar.9.50\common\bin\PbdLink.exe $flags
+  description = IAR_NEW_TOOL+++PDBLINK+++$out
+
+
+
+#Build steps
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\database.xcl : COMPILER_XCL 
+    flags = D$:\vector\customers\snph\IAR\code\database\src\database.c -lC D$:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir -o D$:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M7 -e --fpu=VFPv5_sp --libc++ -I D$:\vector\customers\snph\IAR\code\database\inc\ -I D$:\vector\customers\snph\IAR\code\encrypt\inc\ -I D$:\vector\customers\snph\IAR\code\order_entry\inc\ -I D$:\vector\customers\snph\IAR\code\utils\inc\ -On --predef_macros D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\database.tmp
+    rspfile_name = D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\database.xcl.rsp
+    xclcommand = -source_file D$:\vector\customers\snph\IAR\code\database\src\database.c -xcl_file D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\database.xcl -macro_file D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\database.tmp -icc_path D$:\vector\tools\iar.9.50\arm\bin\iccarm.exe
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\encrypt.xcl : COMPILER_XCL 
+    flags = D$:\vector\customers\snph\IAR\code\encrypt\src\encrypt.c -lC D$:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir -o D$:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M7 -e --fpu=VFPv5_sp --libc++ -I D$:\vector\customers\snph\IAR\code\database\inc\ -I D$:\vector\customers\snph\IAR\code\encrypt\inc\ -I D$:\vector\customers\snph\IAR\code\order_entry\inc\ -I D$:\vector\customers\snph\IAR\code\utils\inc\ -On --predef_macros D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\encrypt.tmp
+    rspfile_name = D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\encrypt.xcl.rsp
+    xclcommand = -source_file D$:\vector\customers\snph\IAR\code\encrypt\src\encrypt.c -xcl_file D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\encrypt.xcl -macro_file D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\encrypt.tmp -icc_path D$:\vector\tools\iar.9.50\arm\bin\iccarm.exe
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\linked_list.xcl : COMPILER_XCL 
+    flags = D$:\vector\customers\snph\IAR\code\utils\src\linked_list.c -lC D$:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir -o D$:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M7 -e --fpu=VFPv5_sp --libc++ -I D$:\vector\customers\snph\IAR\code\database\inc\ -I D$:\vector\customers\snph\IAR\code\encrypt\inc\ -I D$:\vector\customers\snph\IAR\code\order_entry\inc\ -I D$:\vector\customers\snph\IAR\code\utils\inc\ -On --predef_macros D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\linked_list.tmp
+    rspfile_name = D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\linked_list.xcl.rsp
+    xclcommand = -source_file D$:\vector\customers\snph\IAR\code\utils\src\linked_list.c -xcl_file D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\linked_list.xcl -macro_file D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\linked_list.tmp -icc_path D$:\vector\tools\iar.9.50\arm\bin\iccarm.exe
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\manager.xcl : COMPILER_XCL 
+    flags = D$:\vector\customers\snph\IAR\code\order_entry\src\manager.c -lC D$:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir -o D$:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M7 -e --fpu=VFPv5_sp --libc++ -I D$:\vector\customers\snph\IAR\code\database\inc\ -I D$:\vector\customers\snph\IAR\code\encrypt\inc\ -I D$:\vector\customers\snph\IAR\code\order_entry\inc\ -I D$:\vector\customers\snph\IAR\code\utils\inc\ -On --predef_macros D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\manager.tmp
+    rspfile_name = D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\manager.xcl.rsp
+    xclcommand = -source_file D$:\vector\customers\snph\IAR\code\order_entry\src\manager.c -xcl_file D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\manager.xcl -macro_file D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\manager.tmp -icc_path D$:\vector\tools\iar.9.50\arm\bin\iccarm.exe
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\matrix_multiply.xcl : COMPILER_XCL 
+    flags = D$:\vector\customers\snph\IAR\code\encrypt\src\matrix_multiply.c -lC D$:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir -o D$:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M7 -e --fpu=VFPv5_sp --libc++ -I D$:\vector\customers\snph\IAR\code\database\inc\ -I D$:\vector\customers\snph\IAR\code\encrypt\inc\ -I D$:\vector\customers\snph\IAR\code\order_entry\inc\ -I D$:\vector\customers\snph\IAR\code\utils\inc\ -On --predef_macros D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\matrix_multiply.tmp
+    rspfile_name = D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\matrix_multiply.xcl.rsp
+    xclcommand = -source_file D$:\vector\customers\snph\IAR\code\encrypt\src\matrix_multiply.c -xcl_file D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\matrix_multiply.xcl -macro_file D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\matrix_multiply.tmp -icc_path D$:\vector\tools\iar.9.50\arm\bin\iccarm.exe
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\pos_driver.xcl : COMPILER_XCL 
+    flags = D$:\vector\customers\snph\IAR\code\main\pos_driver.c -lC D$:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir -o D$:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M7 -e --fpu=VFPv5_sp --libc++ -I D$:\vector\customers\snph\IAR\code\database\inc\ -I D$:\vector\customers\snph\IAR\code\encrypt\inc\ -I D$:\vector\customers\snph\IAR\code\order_entry\inc\ -I D$:\vector\customers\snph\IAR\code\utils\inc\ -On --predef_macros D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\pos_driver.tmp
+    rspfile_name = D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\pos_driver.xcl.rsp
+    xclcommand = -source_file D$:\vector\customers\snph\IAR\code\main\pos_driver.c -xcl_file D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\pos_driver.xcl -macro_file D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\pos_driver.tmp -icc_path D$:\vector\tools\iar.9.50\arm\bin\iccarm.exe
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\waiting_list.xcl : COMPILER_XCL 
+    flags = D$:\vector\customers\snph\IAR\code\order_entry\src\waiting_list.c -lC D$:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir -o D$:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M7 -e --fpu=VFPv5_sp --libc++ -I D$:\vector\customers\snph\IAR\code\database\inc\ -I D$:\vector\customers\snph\IAR\code\encrypt\inc\ -I D$:\vector\customers\snph\IAR\code\order_entry\inc\ -I D$:\vector\customers\snph\IAR\code\utils\inc\ -On --predef_macros D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\waiting_list.tmp
+    rspfile_name = D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\waiting_list.xcl.rsp
+    xclcommand = -source_file D$:\vector\customers\snph\IAR\code\order_entry\src\waiting_list.c -xcl_file D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\waiting_list.xcl -macro_file D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\waiting_list.tmp -icc_path D$:\vector\tools\iar.9.50\arm\bin\iccarm.exe
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\whitebox.xcl : COMPILER_XCL 
+    flags = D$:\vector\customers\snph\IAR\code\utils\src\whitebox.c -lC D$:\vector\customers\snph\IAR\Debug\List\src_15346631385785888340.dir -o D$:\vector\customers\snph\IAR\Debug\Obj\src_15346631385785888340.dir --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M7 -e --fpu=VFPv5_sp --libc++ -I D$:\vector\customers\snph\IAR\code\database\inc\ -I D$:\vector\customers\snph\IAR\code\encrypt\inc\ -I D$:\vector\customers\snph\IAR\code\order_entry\inc\ -I D$:\vector\customers\snph\IAR\code\utils\inc\ -On --predef_macros D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\whitebox.tmp
+    rspfile_name = D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\whitebox.xcl.rsp
+    xclcommand = -source_file D$:\vector\customers\snph\IAR\code\utils\src\whitebox.c -xcl_file D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\whitebox.xcl -macro_file D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\whitebox.tmp -icc_path D$:\vector\tools\iar.9.50\arm\bin\iccarm.exe
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\database.pbi : INDEXER D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\database.xcl | D$:\vector\customers\snph\IAR\code\database\src\database.c
+    flags = -out=D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\database.pbi -f D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\database.xcl
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\encrypt.pbi : INDEXER D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\encrypt.xcl | D$:\vector\customers\snph\IAR\code\encrypt\src\encrypt.c
+    flags = -out=D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\encrypt.pbi -f D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\encrypt.xcl
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\linked_list.pbi : INDEXER D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\linked_list.xcl | D$:\vector\customers\snph\IAR\code\utils\src\linked_list.c
+    flags = -out=D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\linked_list.pbi -f D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\linked_list.xcl
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\manager.pbi : INDEXER D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\manager.xcl | D$:\vector\customers\snph\IAR\code\order_entry\src\manager.c
+    flags = -out=D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\manager.pbi -f D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\manager.xcl
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\matrix_multiply.pbi : INDEXER D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\matrix_multiply.xcl | D$:\vector\customers\snph\IAR\code\encrypt\src\matrix_multiply.c
+    flags = -out=D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\matrix_multiply.pbi -f D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\matrix_multiply.xcl
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\pos_driver.pbi : INDEXER D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\pos_driver.xcl | D$:\vector\customers\snph\IAR\code\main\pos_driver.c
+    flags = -out=D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\pos_driver.pbi -f D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\pos_driver.xcl
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\waiting_list.pbi : INDEXER D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\waiting_list.xcl | D$:\vector\customers\snph\IAR\code\order_entry\src\waiting_list.c
+    flags = -out=D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\waiting_list.pbi -f D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\waiting_list.xcl
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\whitebox.pbi : INDEXER D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\whitebox.xcl | D$:\vector\customers\snph\IAR\code\utils\src\whitebox.c
+    flags = -out=D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\whitebox.pbi -f D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\whitebox.xcl
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2.pbw : MAKEBROWSE D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2.pbd
+    flags = D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2.pbd -output D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2.pbw
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2_part0.pbi : PDBLINK D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\database.pbi | D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\encrypt.pbi $
+ D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\linked_list.pbi
+    flags = -M D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2_part0.pbi D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\database.pbi D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\encrypt.pbi D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\linked_list.pbi
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2_part1.pbi : PDBLINK D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\manager.pbi | D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\matrix_multiply.pbi $
+ D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\pos_driver.pbi
+    flags = -M D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2_part1.pbi D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\manager.pbi D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\matrix_multiply.pbi D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\pos_driver.pbi
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2_part2.pbi : PDBLINK D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\waiting_list.pbi | D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\whitebox.pbi
+    flags = -M D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2_part2.pbi D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\waiting_list.pbi D$:\vector\customers\snph\IAR\Debug\BrowseInfo\src_15346631385785888340.dir\whitebox.pbi
+
+build D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2.pbd : PDBLINK D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2_part0.pbi | D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2_part1.pbi $
+ D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2_part2.pbi
+    flags = -M D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2.pbd D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2_part0.pbi D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2_part1.pbi D$:\vector\customers\snph\IAR\Debug\BrowseInfo\PointOfSales_v2_part2.pbi
+

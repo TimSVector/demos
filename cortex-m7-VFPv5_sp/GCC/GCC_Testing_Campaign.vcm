@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="36">
+  <config>
+    <saved-logs>5</saved-logs>
+    <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
+  </config>
+  <project-id>1758323093</project-id>
+  <factor-config-options>0</factor-config-options>
+  <environment name="INTEGRATION_TEST" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>.</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="MANAGER_TEST" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>.</original-environment-directory>
+    </config>
+  </environment>
+  <compiler>
+    <compiler>
+      <name>GNU_Target_Bare_Board_ARM_Cortex-M7_STM32F746_ST-Link_C</name>
+      <config>
+        <config>
+          <key>COVERAGE_TYPE</key>
+          <value>Statement+MCDC</value>
+          <key>C_EXECUTE_CMD</key>
+          <value>$(VECTORCAST_DIR)/DATA/gnu_target/execute_gdb.py --ipaddr localhost --port 61234 --gdb_command arm-none-eabi-gdb --type stlink-stm32f746G</value>
+          <key>C_COMPILER_TAG</key>
+          <value>GNUARM_CORTEXM4_T32_C</value>
+          <key>C_PREPROCESS_CMD</key>
+          <value>arm-none-eabi-gcc -E -C -mcpu=cortex-m4 -mcpu=cortex-m7 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb</value>
+          <key>C_COMPILE_CMD</key>
+          <value>arm-none-eabi-gcc -c -g -mcpu=cortex-m4 -mno-unaligned-access  -mcpu=cortex-m7 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb</value>
+          <key>C_DEBUG_CMD</key>
+          <value>$(VECTORCAST_DIR)/DATA/gnu_target/execute_gdb.py --ipaddr localhost --port 61234 --gdb_command arm-none-eabi-gdb --type=stlink-stm32f746G --debug</value>
+          <key>C_LINK_CMD</key>
+          <value>arm-none-eabi-gcc -mcpu=cortex-m4 -g  -mcpu=cortex-m7 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb startup_stm32f746nghx.o system_stm32f7xx.o</value>
+          <key>C_LINK_OPTIONS</key>
+          <value>-Wl,-Map=vcast.map --specs=nano.specs --specs=nosys.specs -TSTM32F746NGHX_RAM.ld</value>
+          <key>C_EDG_FLAGS</key>
+          <value>-w --gcc --gnu_version 100301</value>
+          <key>VCAST_ENVIRONMENT_FILES</key>
+          <value>$(VCAST_SUPPORT_FILES)\STM32F746NGHX_RAM.ld,$(VCAST_SUPPORT_FILES)\startup_stm32f746nghx.o,$(VCAST_SUPPORT_FILES)\stlink-stm32f746G.ini,$(VCAST_SUPPORT_FILES)\system_stm32f7xx.o</value>
+        </config>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VECTORCAST_DIR)\tutorial\c</search-directory>
+      </config>
+    </compiler>
+    <testsuite name="TestSuite">
+      <environment name="INTEGRATION_TEST"/>
+      <environment name="MANAGER_TEST"/>
+    </testsuite>
+  </compiler>
+  <search-directory type="TESTABLE_SOURCE_DIR">D:\vector\customers\snph\wd</search-directory>
+</project>

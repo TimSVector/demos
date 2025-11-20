@@ -1,0 +1,24 @@
+# ninja log v5
+425	444	7803714430705854	D:/vector/customers/snph/IAR/Debug/BrowseInfo/PointOfSales_v2_part2.pbi	8cecdfc4ddeec171
+0	151	7803699990000000	D:/vector/customers/snph/IAR/Debug/BrowseInfo/main.xcl	ebccf1c25bde5620
+16	295	7803714420000000	D:/vector/customers/snph/IAR/Debug/BrowseInfo/src_15346631385785888340.dir/linked_list.xcl	c670418d99020bee
+129	480	7803729132184872	D:/vector/customers/snph/IAR/Debug/BrowseInfo/PointOfSales_v2.pbw	12e59073fe4b4217
+25	316	7803714420000000	D:/vector/customers/snph/IAR/Debug/BrowseInfo/src_15346631385785888340.dir/waiting_list.xcl	e139e2a585a149f1
+153	306	7803699991612075	D:/vector/customers/snph/IAR/Debug/BrowseInfo/main.pbi	8919bae4900fbc0f
+0	66	7803717133265109	D:/vector/customers/snph/IAR/Debug/BrowseInfo/src_15346631385785888340.dir/linked_list.pbi	27b101620b17e671
+8	285	7803714420000000	D:/vector/customers/snph/IAR/Debug/BrowseInfo/src_15346631385785888340.dir/matrix_multiply.xcl	f7f6d0f7a03c5646
+21	378	7803714370000000	D:/vector/customers/snph/IAR/Debug/BrowseInfo/src_15346631385785888340.dir/pos_driver.xcl	b85cbde27a8d7ee4
+100	127	7803729128860808	D:/vector/customers/snph/IAR/Debug/BrowseInfo/PointOfSales_v2.pbd	fbbcd30fa194c6f3
+11	391	7803714370000000	D:/vector/customers/snph/IAR/Debug/BrowseInfo/src_15346631385785888340.dir/database.xcl	4b7926ab0f4107c4
+1	349	7803714370000000	D:/vector/customers/snph/IAR/Debug/BrowseInfo/src_15346631385785888340.dir/encrypt.xcl	e30c740abe6095dd
+44	163	7803714427789984	D:/vector/customers/snph/IAR/Debug/BrowseInfo/src_15346631385785888340.dir/database.pbi	e946df9d5a6be9ba
+34	151	7803714427719975	D:/vector/customers/snph/IAR/Debug/BrowseInfo/src_15346631385785888340.dir/encrypt.pbi	d6d727c9a3477295
+1	68	7803729128245500	D:/vector/customers/snph/IAR/Debug/BrowseInfo/src_15346631385785888340.dir/pos_driver.pbi	8284bebfa736d5d1
+31	403	7803714370000000	D:/vector/customers/snph/IAR/Debug/BrowseInfo/src_15346631385785888340.dir/manager.xcl	8085c57e836eefbd
+129	350	7803714420000000	D:/vector/customers/snph/IAR/Debug/BrowseInfo/src_15346631385785888340.dir/whitebox.xcl	e05c1eac8a6ec9a2
+318	408	7803714430305894	D:/vector/customers/snph/IAR/Debug/BrowseInfo/src_15346631385785888340.dir/waiting_list.pbi	8c376ec74b638f5c
+1	58	7803716372025301	D:/vector/customers/snph/IAR/Debug/BrowseInfo/src_15346631385785888340.dir/matrix_multiply.pbi	8ff01ca07e0f5b9
+69	93	7803717133540638	D:/vector/customers/snph/IAR/Debug/BrowseInfo/PointOfSales_v2_part0.pbi	ac609290a703f24a
+1	127	7803714427479987	D:/vector/customers/snph/IAR/Debug/BrowseInfo/src_15346631385785888340.dir/manager.pbi	afafa50881177bb1
+352	423	7803714430445895	D:/vector/customers/snph/IAR/Debug/BrowseInfo/src_15346631385785888340.dir/whitebox.pbi	b5142e51da5c68eb
+71	98	7803729128570736	D:/vector/customers/snph/IAR/Debug/BrowseInfo/PointOfSales_v2_part1.pbi	5d1b0c636a69108
