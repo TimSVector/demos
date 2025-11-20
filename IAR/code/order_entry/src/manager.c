@@ -167,7 +167,7 @@ int32_t Clear_Table(table_index_type Table)
   int32_t ret_val = SUCCESS;
   
   // Local Table Data
-  const struct table_data_type Table_Data = Get_Record(Table);
+  struct table_data_type Table_Data = Get_Record(Table);
 
   // can't clear the table is the bill isn't paid
   if (Table_Data.Is_Bill_Paid == v_true)

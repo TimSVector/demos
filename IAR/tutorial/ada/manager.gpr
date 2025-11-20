@@ -1,0 +1,8 @@
+
+project manager is
+   for Source_Dirs use (".");
+   for Main use ("manager_driver.adb");
+end manager;
+
+
+
