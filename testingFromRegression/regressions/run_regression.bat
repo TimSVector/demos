@@ -17,9 +17,10 @@ for /d %%D in (*) do (
         echo Running %%~nxD.bat in %%D
         pushd "%%D"
         call "%%~nxD.bat" >> ..\regression.log
+        if defined JENKINS_URL {
+            vpython %WORKSPACE%\vc_scripts\generate_xml.py "%%~nxD.vce"
+        )
         popd
-    ) else (
-        echo Skipping %%D (no %%~nxD.bat found)
     )
 )
 
