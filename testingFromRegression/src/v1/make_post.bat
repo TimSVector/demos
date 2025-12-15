@@ -24,19 +24,3 @@ gcc build/*.o -o post.exe >> build.log 2>&1
 @echo Completed Make >> build.log
 
 type build.log 
-
-
-if EXIST "%EXEC%" goto:end
-
-:error
-popd
-
-set PATH=%ORIG_PATH%
-
-exit /b -1
-
-:end
-
-popd
-
-set PATH=%ORIG_PATH%
