@@ -3,7 +3,7 @@ pushd %~dp0
 
 set ORIG_PATH=%PATH%
 
-call ..\setenv.bat
+call ..\..\setenv.bat
 
 echo Making PointOfSales Platform v2 
 

@@ -18,7 +18,7 @@ for /d %%D in (*) do (
         echo ==========================================
         echo Running %%~nxD.bat in %%D
         pushd "%%D"
-        rmdir /s /q %%~nxD
+        rmdir /s /q %%~nxD > 2>&1
         del %%~nxD.vce command.log command.tmp *.xml CCAST_.CFG > nul 2>&1
         call "%%~nxD.bat" >> ..\regression.log
         if defined JENKINS_URL (
