@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="36">
+  <config>
+    <saved-logs>5</saved-logs>
+    <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
+  </config>
+  <project-id>1765826106</project-id>
+  <factor-config-options>0</factor-config-options>
+  <environment name="DATABASE" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>regressions/DATABASE</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="INTEGRATION_TEST" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>regressions/INTEGRATION_TEST</original-environment-directory>
+    </config>
+  </environment>
+  <environment name="MANAGER" type="UNIT">
+    <language>1</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>regressions/MANAGER</original-environment-directory>
+    </config>
+  </environment>
+  <compiler>
+    <compiler>
+      <name>VectorCAST_MinGW_C</name>
+      <config>
+        <config>
+          <key>TEST_CASE_TIMEOUT</key>
+          <value>3</value>
+          <key>C_COMPILER_TAG</key>
+          <value>BUILTIN_MINGW_C</value>
+          <key>VCAST_STRICT_TEST_CASE_IMPORT</key>
+          <value>TRUE</value>
+        </config>
+      </config>
+    </compiler>
+    <testsuite name="TestSuite">
+      <config>
+        <config>
+          <key>COVERAGE_TYPE</key>
+          <value>Statement+MCDC</value>
+        </config>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_BASE_DIR)/\database\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_BASE_DIR)/\database\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_BASE_DIR)/\order_entry\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_BASE_DIR)/\order_entry\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_BASE_DIR)/\utils\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_BASE_DIR)/\utils\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_BASE_DIR)/\main</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_BASE_DIR)\encrypt\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_BASE_DIR)\encrypt\src</search-directory>
+      </config>
+      <environment name="DATABASE"/>
+      <environment name="INTEGRATION_TEST"/>
+      <environment name="MANAGER"/>
+    </testsuite>
+  </compiler>
+  <search-directory type="TESTABLE_SOURCE_DIR">D:\vector\github\demos\testingFromRegression\regressions\DATABASE</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">D:\vector\github\demos\testingFromRegression\regressions\INTEGRATION_TEST</search-directory>
+  <search-directory type="TESTABLE_SOURCE_DIR">D:\vector\github\demos\testingFromRegression\regressions\MANAGER</search-directory>
+</project>
