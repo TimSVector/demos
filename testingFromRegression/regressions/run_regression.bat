@@ -6,6 +6,8 @@ call ..\setenv.bat
 rmdir /s /q results > nul 2>&1
 rmdir /s /q reports > nul 2>&1
 
+del *.xml > nul 2>&1
+
 mkdir results 
 mkdir reports
 
