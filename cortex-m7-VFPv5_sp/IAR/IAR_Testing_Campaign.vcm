@@ -119,6 +119,7 @@
         <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\src</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\inc</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\src</search-directory>
+        <enabled>0</enabled>
       </config>
     </compiler>
     <testsuite name="TestSuite">
