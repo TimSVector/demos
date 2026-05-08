@@ -31,13 +31,6 @@ TEST.UNIT:encrypt
 TEST.SUBPROGRAM:transmit_Info
 TEST.NEW
 TEST.NAME:encrypt.transmit_Info.failure
-TEST.IMPORT_FAILURES:
-(E) Errors from previous script import(s)
-    >>> (E) @LINE: 411 TEST.VALUE:encrypt.transmit_Info.Info:12.34
-    >>>     >>> Value for 'numeric type' out of range
-    >>>     >>>    Read "12.34"
-    >>>     >>>    The script line will be ignored.
-TEST.END_IMPORT_FAILURES:
 TEST.STUB:encrypt.generate_private_key
 TEST.VALUE:encrypt.transmit_Info.name:<<malloc 14>>
 TEST.VALUE:encrypt.transmit_Info.name:"Tim Schneider"
@@ -57,13 +50,6 @@ TEST.UNIT:encrypt
 TEST.SUBPROGRAM:transmit_Info
 TEST.NEW
 TEST.NAME:encrypt.transmit_Info.good
-TEST.IMPORT_FAILURES:
-(E) Errors from previous script import(s)
-    >>> (E) @LINE: 427 TEST.VALUE:encrypt.transmit_Info.Info:12.34
-    >>>     >>> Value for 'numeric type' out of range
-    >>>     >>>    Read "12.34"
-    >>>     >>>    The script line will be ignored.
-TEST.END_IMPORT_FAILURES:
 TEST.VALUE:encrypt.transmit_Info.name:<<malloc 14>>
 TEST.VALUE:encrypt.transmit_Info.name:"Tim Schneider"
 TEST.VALUE:encrypt.transmit_Info.number:<<malloc 17>>
