@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="36">
   <config>
+    <config>
+      <key>RANGE_CHECK</key>
+      <value>NONE</value>
+    </config>
     <base-directories>
       <key>VCAST_SourceRoot</key>
       <value>$(VCAST_DEMO_SRC_BASE)</value>
@@ -33,7 +37,34 @@
   </environment>
   <compiler>
     <compiler>
-      <name>IAR_STM32F746GN_Sim_C++</name>
+      <name>GNU_Target_Bare_Board_ARM_Cortex-M7_MPS2-AN500_QEMU_C++</name>
+      <config>
+        <config>
+          <key>C_COMPILER_TAG</key>
+          <value>GNUARM_CORTEXM7_QEMU_MPS2AN500_CPP</value>
+        </config>
+      </config>
+    </compiler>
+    <testsuite name="TestSuite">
+      <config>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\encrypt\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\encrypt\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\main</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\src</search-directory>
+      </config>
+      <environment name="ENCRYPT_UT"/>
+      <environment name="INTEGRATION_TEST"/>
+      <environment name="MANAGER_UT"/>
+    </testsuite>
+  </compiler>
+  <compiler>
+    <compiler>
+      <name>IAR_STM32F746GN_SIM_C++</name>
       <config>
         <config>
           <key>WHITEBOX</key>
@@ -110,6 +141,10 @@
           <key>C_LINK_OPTIONS</key>
           <value>--config $(VCAST_IAR_INSTALL_DIR)/config/linker/ST/stm32f746xG.icf --map vcast.map --redirect _Printf=_PrintfFullNoMb --redirect _Scanf=_ScanfFullNoMb --redirect __write=__write_buffered --semihosting --entry __iar_program_start</value>
         </config>
+      </config>
+    </compiler>
+    <testsuite name="TestSuite">
+      <config>
         <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\inc</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\src</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\encrypt\inc</search-directory>
@@ -119,10 +154,34 @@
         <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\src</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\inc</search-directory>
         <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\src</search-directory>
-        <enabled>0</enabled>
+      </config>
+      <environment name="ENCRYPT_UT"/>
+      <environment name="INTEGRATION_TEST"/>
+      <environment name="MANAGER_UT"/>
+    </testsuite>
+  </compiler>
+  <compiler>
+    <compiler>
+      <name>VectorCAST_MinGW_C++</name>
+      <config>
+        <config>
+          <key>C_COMPILER_TAG</key>
+          <value>BUILTIN_MINGW_CPP</value>
+        </config>
       </config>
     </compiler>
     <testsuite name="TestSuite">
+      <config>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\encrypt\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\encrypt\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\main</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\src</search-directory>
+      </config>
       <environment name="ENCRYPT_UT"/>
       <environment name="INTEGRATION_TEST"/>
       <environment name="MANAGER_UT"/>
