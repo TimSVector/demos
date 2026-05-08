@@ -2,8 +2,12 @@
 <project version="36">
   <config>
     <config>
+      <key>WHITEBOX</key>
+      <value>YES</value>
       <key>RANGE_CHECK</key>
       <value>NONE</value>
+      <key>COVERAGE_TYPE</key>
+      <value>Statement+MCDC</value>
     </config>
     <base-directories>
       <key>VCAST_SourceRoot</key>
@@ -67,10 +71,6 @@
       <name>IAR_STM32F746GN_SIM_C++</name>
       <config>
         <config>
-          <key>WHITEBOX</key>
-          <value>YES</value>
-          <key>COVERAGE_TYPE</key>
-          <value>STATEMENT+MCDC</value>
           <key>C_EXECUTE_CMD</key>
           <value>$(VCAST_SUPPORT_FILES)\execute_iar.bat SIM</value>
           <key>C_COMPILER_TAG</key>
@@ -116,12 +116,8 @@
       <name>IAR_STM32F746GN_StLink_C++</name>
       <config>
         <config>
-          <key>WHITEBOX</key>
-          <value>YES</value>
-          <key>COVERAGE_TYPE</key>
-          <value>STATEMENT+MCDC</value>
           <key>C_EXECUTE_CMD</key>
-          <value>$(VCAST_SUPPORT_FILES)\execute_iar.bat</value>
+          <value>$(VCAST_SUPPORT_FILES)\execute_iar.py</value>
           <key>C_COMPILER_TAG</key>
           <value>IAR_ARM_CORTEX_M4_950+_SIM_CPP</value>
           <key>C_PREPROCESS_CMD</key>

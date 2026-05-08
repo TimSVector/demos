@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"D:\vector\tools\iar.9.50\common\bin\cspybat" -f "D:\vector\customers\snph\IAR\settings\PointOfSales_v2.Debug.general.xcl" --backend -f "D:\vector\customers\snph\IAR\settings\PointOfSales_v2.Debug.driver.xcl" 
+"D:\vector\tools\iar.9.50\arm\..\common\bin\cspybat" -f "D:\dev\tmp\demos\cortex-m7-VFPv5_sp\IAR\project\settings\PointOfSales_v2.Debug.general.xcl" --backend -f "D:\dev\tmp\demos\cortex-m7-VFPv5_sp\IAR\project\settings\PointOfSales_v2.Debug.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"D:\vector\tools\iar.9.50\common\bin\cspybat" -f "D:\vector\customers\snph\IAR\settings\PointOfSales_v2.Debug.general.xcl" "--debug_file=%~1" --backend -f "D:\vector\customers\snph\IAR\settings\PointOfSales_v2.Debug.driver.xcl" 
+"D:\vector\tools\iar.9.50\arm\..\common\bin\cspybat" -f "D:\dev\tmp\demos\cortex-m7-VFPv5_sp\IAR\project\settings\PointOfSales_v2.Debug.general.xcl" "--debug_file=%~1" --backend -f "D:\dev\tmp\demos\cortex-m7-VFPv5_sp\IAR\project\settings\PointOfSales_v2.Debug.driver.xcl" 
 
 @echo off 
 :end

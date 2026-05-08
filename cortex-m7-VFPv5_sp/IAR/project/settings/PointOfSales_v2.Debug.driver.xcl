@@ -6,7 +6,7 @@
 
 -p
 
-D:\vector\tools\iar.9.50\arm\config\debugger\ST\STM32F746NG.ddf
+D:\vector\tools\iar.9.50\arm\..\arm\config\debugger\ST\STM32F746NG.ddf
 
 --semihosting
 

@@ -356,10 +356,10 @@
                 </option>
                 <option>
                     <name>CCIncludePath2</name>
-                    <state>D:\vector\customers\snph\IAR\code\database\inc</state>
-                    <state>D:\vector\customers\snph\IAR\code\encrypt\inc</state>
-                    <state>D:\vector\customers\snph\IAR\code\order_entry\inc</state>
-                    <state>D:\vector\customers\snph\IAR\code\utils\inc</state>
+                    <state>D:\vector\github\demos\cortex-m7-VFPv5_sp\IAR\code\database\inc</state>
+                    <state>D:\vector\github\demos\cortex-m7-VFPv5_sp\IAR\code\encrypt\inc</state>
+                    <state>D:\vector\github\demos\cortex-m7-VFPv5_sp\IAR\code\order_entry\inc</state>
+                    <state>D:\vector\github\demos\cortex-m7-VFPv5_sp\IAR\code\utils\inc</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -2205,52 +2205,52 @@
     <group>
         <name>inc</name>
         <file>
-            <name>$PROJ_DIR$\code\order_entry\inc\ctypes.h</name>
+            <name>$PROJ_DIR$\..\code\order_entry\inc\ctypes.h</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\code\database\inc\database.h</name>
+            <name>$PROJ_DIR$\..\code\database\inc\database.h</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\code\encrypt\inc\encrypt.h</name>
+            <name>$PROJ_DIR$\..\code\encrypt\inc\encrypt.h</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\code\utils\inc\linked_list.h</name>
+            <name>$PROJ_DIR$\..\code\utils\inc\linked_list.h</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\code\order_entry\inc\manager.h</name>
+            <name>$PROJ_DIR$\..\code\order_entry\inc\manager.h</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\code\encrypt\inc\matrix_multiply.h</name>
+            <name>$PROJ_DIR$\..\code\encrypt\inc\matrix_multiply.h</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\code\order_entry\inc\waiting_list.h</name>
+            <name>$PROJ_DIR$\..\code\order_entry\inc\waiting_list.h</name>
         </file>
     </group>
     <group>
         <name>src</name>
         <file>
-            <name>$PROJ_DIR$\code\database\src\database.c</name>
+            <name>$PROJ_DIR$\..\code\database\src\database.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\code\encrypt\src\encrypt.c</name>
+            <name>$PROJ_DIR$\..\code\encrypt\src\encrypt.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\code\utils\src\linked_list.c</name>
+            <name>$PROJ_DIR$\..\code\utils\src\linked_list.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\code\order_entry\src\manager.c</name>
+            <name>$PROJ_DIR$\..\code\order_entry\src\manager.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\code\encrypt\src\matrix_multiply.c</name>
+            <name>$PROJ_DIR$\..\code\encrypt\src\matrix_multiply.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\code\main\pos_driver.c</name>
+            <name>$PROJ_DIR$\..\code\main\pos_driver.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\code\order_entry\src\waiting_list.c</name>
+            <name>$PROJ_DIR$\..\code\order_entry\src\waiting_list.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\code\utils\src\whitebox.c</name>
+            <name>$PROJ_DIR$\..\code\utils\src\whitebox.c</name>
         </file>
     </group>
 </project>
