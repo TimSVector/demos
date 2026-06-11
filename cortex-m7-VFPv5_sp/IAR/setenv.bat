@@ -1,6 +1,7 @@
 
 set VCAST_IAR_INSTALL_DIR=D:\vector\tools\iar.9.50\arm
 
+set VCAST_NUM_JOBS=8
 
 set VCAST_SUPPORT_FILES=%~dp0SupportFiles
 
