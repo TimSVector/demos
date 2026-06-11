@@ -1,4 +1,4 @@
--- VectorCAST 26 (03/02/26)
+-- VectorCAST 26.sp1 (04/27/26)
 -- Test Case Script
 --
 -- Environment    : MANAGER_UT
@@ -25,21 +25,6 @@ TEST.SCRIPT_FEATURE:USING_DECL_FOR_BASE_MEMBER_HANDLED
 -- Unit: manager
 
 -- Subprogram: Add_Included_Dessert
-
--- Test Case: BASIS-PATH-001
-TEST.UNIT:manager
-TEST.SUBPROGRAM:Add_Included_Dessert
-TEST.NEW
-TEST.NAME:BASIS-PATH-001
-TEST.BASIS_PATH:1 of 4
-TEST.NOTES:
-This is an automatically generated test case.
-Test Path 1
-(1) if (Order != (0)) ==> FALSE
-Test Case Generation Notes:
-TEST.END_NOTES:
-TEST.VALUE:manager.Add_Included_Dessert.Order:<<null>>
-TEST.END
 
 -- Test Case: BASIS-PATH-002
 TEST.UNIT:manager

@@ -7,14 +7,17 @@
       <key>RANGE_CHECK</key>
       <value>NONE</value>
       <key>COVERAGE_TYPE</key>
-      <value>Statement+MCDC</value>
+      <value>Statement</value>
+      <key>VCAST_COVERAGE_SOURCE_FILE_PERSPECTIVE</key>
+      <value>FALSE</value>
     </config>
     <base-directories>
-      <key>VCAST_SourceRoot</key>
+      <key>POST_BASE_DIRECTORY</key>
       <value>$(VCAST_DEMO_SRC_BASE)</value>
     </base-directories>
     <saved-logs>5</saved-logs>
     <build-directory-naming-strategy>COMPRESSED</build-directory-naming-strategy>
+    <root-source-directory>$(VCAST_DEMO_SRC_BASE)</root-source-directory>
   </config>
   <project-id>1758656104</project-id>
   <factor-config-options>0</factor-config-options>
@@ -39,9 +42,16 @@
       <original-environment-directory>IAR_Testing_Campaign/build/1964412592</original-environment-directory>
     </config>
   </environment>
+  <environment name="WHITEBOX" type="UNIT">
+    <language>2</language>
+    <is-monitored>0</is-monitored>
+    <config>
+      <original-environment-directory>IAR_Testing_Campaign/build/3418618514</original-environment-directory>
+    </config>
+  </environment>
   <compiler>
     <compiler>
-      <name>GNU_Target_Bare_Board_ARM_Cortex-M7_MPS2-AN500_QEMU_C++</name>
+      <name>GNU_ARM_QEMU_C++</name>
       <config>
         <config>
           <key>C_COMPILER_TAG</key>
@@ -51,19 +61,20 @@
     </compiler>
     <testsuite name="TestSuite">
       <config>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\encrypt\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\encrypt\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\main</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\database\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\database\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\encrypt\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\encrypt\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\main</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\order_entry\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\order_entry\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\utils\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\utils\src</search-directory>
       </config>
       <environment name="ENCRYPT_UT"/>
       <environment name="INTEGRATION_TEST"/>
       <environment name="MANAGER_UT"/>
+      <environment name="WHITEBOX"/>
     </testsuite>
   </compiler>
   <compiler>
@@ -96,19 +107,20 @@
     </compiler>
     <testsuite name="TestSuite">
       <config>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\encrypt\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\encrypt\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\main</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\database\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\database\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\encrypt\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\encrypt\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\main</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\order_entry\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\order_entry\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\utils\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\utils\src</search-directory>
       </config>
       <environment name="ENCRYPT_UT"/>
       <environment name="INTEGRATION_TEST"/>
       <environment name="MANAGER_UT"/>
+      <environment name="WHITEBOX"/>
     </testsuite>
   </compiler>
   <compiler>
@@ -141,19 +153,20 @@
     </compiler>
     <testsuite name="TestSuite">
       <config>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\encrypt\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\encrypt\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\main</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\database\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\database\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\encrypt\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\encrypt\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\main</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\order_entry\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\order_entry\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\utils\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\utils\src</search-directory>
       </config>
       <environment name="ENCRYPT_UT"/>
       <environment name="INTEGRATION_TEST"/>
       <environment name="MANAGER_UT"/>
+      <environment name="WHITEBOX"/>
     </testsuite>
   </compiler>
   <compiler>
@@ -168,19 +181,20 @@
     </compiler>
     <testsuite name="TestSuite">
       <config>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\database\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\encrypt\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\encrypt\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\main</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\order_entry\src</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\inc</search-directory>
-        <search-directory type="TESTABLE_SOURCE_DIR">$(VCAST_SourceRoot)\code\utils\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\database\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\database\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\encrypt\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\encrypt\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\main</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\order_entry\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\order_entry\src</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\utils\inc</search-directory>
+        <search-directory type="TESTABLE_SOURCE_DIR">$(POST_BASE_DIRECTORY)\code\utils\src</search-directory>
       </config>
       <environment name="ENCRYPT_UT"/>
       <environment name="INTEGRATION_TEST"/>
       <environment name="MANAGER_UT"/>
+      <environment name="WHITEBOX"/>
     </testsuite>
   </compiler>
 </project>

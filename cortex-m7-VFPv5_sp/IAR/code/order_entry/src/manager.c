@@ -63,9 +63,6 @@
 
 void Add_Included_Dessert(struct order_type* Order)
 {
-  // Null pointer check
-  if (Order != NULL) {
-  
     // if special steak order
     if(Order->Entree == STEAK &&
      Order->Salad == CAESAR &&
@@ -73,7 +70,6 @@ void Add_Included_Dessert(struct order_type* Order)
     {
       Order->Dessert = PIE;
     } 
-
     // if special lobster order
     else if(Order->Entree == LOBSTER &&
             Order->Salad == GREEN &&
@@ -81,10 +77,6 @@ void Add_Included_Dessert(struct order_type* Order)
     {  
       Order->Dessert = CAKE;  
     }
-    else {
-      Order->Dessert = FRUIT;  
-    }
-  }      
 }
 
 /**************************************************************************************
